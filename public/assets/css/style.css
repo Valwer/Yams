@@ -1,3 +1,18 @@
+/* FONTS */
+
+.montserrat-regular {
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+  }
+  
+  .luckiest-guy-regular {
+	  font-family: "Luckiest Guy", cursive;
+	  font-weight: 400;
+	  font-style: normal;
+	}
+
 *,
 *:before,
 *:after {
@@ -14,22 +29,30 @@ header {
 }
 
 h1 {
+	color: #3f3f3f !important;
 	margin: 0;
-	font-size: 32px;
-	font-family: 'Montserrat', sans-serif;
+	font-size: 50px !important;
+	font-family: "Luckiest Guy", cursive;
 	text-transform: uppercase;
-	text-shadow: 1px 1px 0px #DC143C,
-		2px 2px 0px #DC143C,
-		3px 3px 0px #DC143C,
-		4px 4px 0px #DC143C;
+	text-shadow: 1px 1px 8px #FFFFFF,
+		2px 2px 0px #FFFFFF,
+		3px 3px 0px #FFFFFF,
+		4px 4px 0px #FFFFFF;
+
 }
 
+.bg-red {
+	background: #940000;
+}
+.bg-gold {
+	background: #DCB253;
+}
 h2 {
 	font-size: 24px;
 }
 
 body {
-	background: lightblue !important;
+	background: #051D3B !important;
 	color: white;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
@@ -59,6 +82,8 @@ nav {
 
 nav ul {
 	text-align: center;
+	margin-top: 3px;
+	padding: 0;
 }
 
 nav ul li {
@@ -67,7 +92,7 @@ nav ul li {
 	width: 70px;
 	height: 70px;
 	cursor: pointer;
-	background: crimson;
+	background: #940000;
 	text-transform: uppercase;
 	transition: all .6s ease-out;
 	margin: 0 5px;
@@ -78,8 +103,8 @@ nav ul li:after {
 	content: "";
 	border-radius: 8px;
 	position: absolute;
-	background: white;
-	color: crimson;
+	background: #DCB253;
+	color: #151515;
 	top: 100%;
 	left: 0;
 	width: 100%;
@@ -96,11 +121,11 @@ nav ul li:nth-child(1):after {
 	line-height: 80px;
 }
 nav ul li:nth-child(2):after {
-	content: "Règles";
+	content: "Restart";
 	line-height: 80px;
 }
 nav ul li:nth-child(3):after {
-	content: "Restart";
+	content: "Règles";
 	line-height: 80px;
 }
 nav ul li:nth-child(4):after {
@@ -162,12 +187,6 @@ nav ul li div {
 	background: url('/public/assets/img/icons/icon-info.svg') center/contain no-repeat;
 }
 
-.head {
-	width: 32px;
-	height: 35px;
-	background: white;
-	border-radius: 8px;
-}
 
 .box-content {
 	height: 50vh;
