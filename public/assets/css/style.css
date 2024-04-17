@@ -7,14 +7,14 @@
 }
 
 header {
-    text-align: center; /* Centrage horizontal */
-    padding: 20px 0; /* Espace autour du titre */
+    text-align: center;
+    padding: 20px 0;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background: transparent;
-    z-index: 9999; /* Assurez-vous que le titre reste au-dessus du contenu */
+    z-index: 9999;
 }
 
 h1 {
@@ -34,7 +34,7 @@ h2 {
 
 body {
   padding: 100px 0;
-	background: lightblue;
+	background: lightblue !important;
   color: white;
   max-width:640px;
 	font-family: 'Montserrat', sans-serif;
