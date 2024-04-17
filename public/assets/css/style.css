@@ -94,7 +94,7 @@ nav ul li {
 	cursor: pointer;
 	background: #940000;
 	text-transform: uppercase;
-	transition: all .6s ease-out;
+	transition: all .4s ease-in;
 	margin: 0 5px;
 	/* Espacement entre les éléments de menu */
 }
@@ -112,8 +112,8 @@ nav ul li:after {
 	/* Hauteur de l'élément de menu */
 	opacity: .5;
 	transform: perspective(400px) rotateX(-90deg);
-	transform-origin: 0 0;
-	transition: all .4s ease-out;
+	transform-origin: 45 45;
+	transition: all .4s ease-in;
 }
 
 nav ul li:nth-child(1):after {
@@ -196,4 +196,8 @@ nav ul li div {
 
 .title-set {
 	border-radius: 8px;
+}
+
+.modal-sets {
+	height: 60vh;
 }
