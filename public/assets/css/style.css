@@ -197,3 +197,31 @@ nav ul li div {
 .title-set {
 	border-radius: 8px;
 }
+
+/* ### LES DES ### */
+
+.face {
+    width: 100px; /* Ajustez la largeur selon vos besoins */
+    height: 100px; /* Ajustez la hauteur selon vos besoins */
+    display: inline-block;
+    background-color: white;
+    border-radius: 10px; /* Ajoute des coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajoute une ombre */
+    margin: 5px; /* Ajoute un espacement entre les dés */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+/* Styles spécifiques pour chaque face */
+.face.face1 { background-color: #ff0000; } 
+.face.face2 { background-color: #ff0000; } 
+.face.face3 { background-color: #ff0000; } 
+.face.face4 { background-color: #ff0000; } 
+.face.face5 { background-color: #ff0000; } 
+.face.face6 { background-color: #ff0000; }
+
+
