@@ -19,33 +19,33 @@ const result = lancerDe()
 console.log(lancerDe())
 
 
-        // Fonction pour simuler le lancer de dés
-        function rollDice() {
-            return Math.floor(Math.random() * 6) + 1;
+// Fonction pour simuler le lancer de dés
+function rollDice() {
+    return Math.floor(Math.random() * 6) + 1;
+}
+
+// Fonction pour animer le lancer de dés
+function animateRoll() {
+    let diceElement = document.getElementById('dice');
+    let rolls = 10; // Nombre de lancers de dés
+    let interval = 200; // Intervalle de temps entre chaque lancer en millisecondes
+
+    // Fonction récursive pour mettre à jour l'affichage des dés à chaque lancer
+    function animate() {
+        rolls--;
+        if (rolls >= 0) {
+            setTimeout(function() {
+                let result = rollDice();
+                diceElement.src = `./public/assets/img/icons/dices/dic${result}.png`;
+                animate();
+            }, interval);
+        } else {
+            // Lorsque tous les lancers sont terminés, afficher le résultat final
+            let result = rollDice();
+            diceElement.src = `./public/assets/img/icons/dices/dic${result}.png`;
         }
+    }
 
-        // Fonction pour animer le lancer de dés
-        function animateRoll() {
-            let diceElement = document.getElementById('dice');
-            let rolls = 10; // Nombre de lancers de dés
-            let interval = 200; // Intervalle de temps entre chaque lancer en millisecondes
-
-            // Fonction récursive pour mettre à jour l'affichage des dés à chaque lancer
-            function animate() {
-                rolls--;
-                if (rolls >= 0) {
-                    setTimeout(function() {
-                        let result = rollDice();
-                        diceElement.src = `./public/assets/img/icons/dices/dices${result}.png`;
-                        animate();
-                    }, interval);
-                } else {
-                    // Lorsque tous les lancers sont terminés, afficher le résultat final
-                    let result = rollDice();
-                    diceElement.src = `./public/assets/img/icons/dices/dices${result}.png`;
-                }
-            }
-
-            // Lancer l'animation
-            animate();
-        }
+    // Lancer l'animation
+    animate();
+}
