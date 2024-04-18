@@ -45,5 +45,5 @@ let resultatDes = rollTheDices();
 console.log("Résultats des lancers des dés :", resultatDes);
 
 
-let newDice = rollTheDices(dice); // Appel de la fonction ReRollTheDice avec le tableau initial
+let newDice = rollTheDices(dice); // Appel de la fonction rollTheDices avec le tableau initial
 console.log("Nouveau tableau de dés :", newDice);
