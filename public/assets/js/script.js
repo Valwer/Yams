@@ -1,6 +1,32 @@
-// Fonction pour simuler le lancer d'un dé
-function getRandomValue() {
+document.addEventListener('DOMContentLoaded', function() {
+    const rulesButton = document.getElementById('rulesButton'); // Utilisation de l'ID 'rulesButton'
+    const restartButton = document.getElementById('restartButton'); // Utilisation de l'ID 'rulesButton'
+    const modal = new bootstrap.Modal(document.getElementById('rulesModal')); // Créer une instance de la modal Bootstrap
+    const modaal = new bootstrap.Modal(document.getElementById('restartModal')); // Créer une instance de la modal Bootstrap
 
+
+    rulesButton.addEventListener('click', function() {
+        modal.show(); // Afficher la modal lorsque le bouton est cliqué
+    });
+    restartButton.addEventListener('click', function() {
+        modaal.show(); // Afficher la modal lorsque le bouton est cliqué
+    });
+});
+
+const lancerDe = function () {
+    const numberDecimal = (Math.random() * 6) + 1
+    const number = Math.trunc(numberDecimal)
+    return number
+};
+
+ 
+const result = lancerDe()
+
+console.log(lancerDe())
+
+
+// Fonction pour simuler le lancer de dés
+function rollDice() {
     return Math.floor(Math.random() * 6) + 1;
 }
 
@@ -135,8 +161,7 @@ function calculate(diceRolls) {
         }
     }
 
-    console.log('Pas de brelan');
+    // Lancer l'animation
+    animate();
 }
 
-// Exemple d'utilisation
-calculate([3, 3, 3, 1, 4]);  // Affichera "Brelan"
