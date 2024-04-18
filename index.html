@@ -49,7 +49,7 @@
             <div class="col-12 col-md-4">
                 <div class="text-center bg-gold title-set">
                     <div class="text-dark"><img class="me-3 mt-1"
-                            src="./public/assets/img/icons/dices/scores.png">Tableau des scores<img class="ms-3 mt-1"
+                            src="./public/assets/img/icons/dices/scores.png">Scores<img class="ms-3 mt-1"
                             src="./public/assets/img/icons/dices/scores.png"></div>
                 </div>
 
@@ -88,7 +88,7 @@
                             </tr>
 
                             <tr class="space-col">
-                                <th class="space-col" class="fs-5">Total</th>
+                                <th class="space-col fs-5">Total</th>
                                 <th class="fs-5">20</th>
                             </tr>
 
@@ -98,7 +98,7 @@
                             </tr>
 
                             <tr class="space-col">
-                                <th class="space-col" class="fs-5">Total 1</th>
+                                <th class="space-col fs-5">Total 1</th>
                                 <th class="fs-5"></th>
                             </tr>
 
@@ -132,16 +132,16 @@
                             </tr>
 
                             <tr class="space-col">
-                                <th class="space-col" class="fs-5">Total 2</th>
+                                <th class="space-col fs-5">Total 2</th>
                                 <th class="fs-5"></th>
                             </tr>
                             <tr class="space-col">
-                                <th class="space-col" class="fs-5">Total 1+2</th>
+                                <th class="space-col fs-5">Total 1+2</th>
                                 <th class="fs-5"></th>
                             </tr>
 
                             <tr class="space-col">
-                                <td class="space-col" class="fs-4">Score<img class="ms-3"
+                                <td class="space-col fs-4">Score<img class="ms-3"
                                     src="./public/assets/img/icons/dices/scores.png"></td>
                                 <td class="fs-4">120</td>
                             </tr>
@@ -162,7 +162,7 @@
             <li id="dice-icon">
                 <div class="dice-icon"></div>
             </li>
-            <li>
+            <li id="restartButton">
                 <div class="restart-icon"></div>
             </li>
             <li id="rulesButton">
@@ -175,13 +175,36 @@
     </nav>
     <!-- FIN NAVBAR -->
 
-    <!-- MODAL -->
-    <div class="modal fade modal-dialog-scrollable mt-5" id="exampleModal" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+    <!-- MODAL RESTART -->
+    <!-- Modal -->
+    <div class="modal fade" id="restartModal" tabindex="-1" aria-labelledby="restartButtonLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="restartButtonLabel">Redémarrer la partie</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p class="luckiest-guy-regular">Voulez-vous redémarrer la partie ?</p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-primary" onclick='window.location.reload(false)' value="Rafraichir">Relancer</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL RULES -->
+    <div class="modal fade modal-dialog-scrollable mt-5" id="rulesModal" tabindex="-1"
+        aria-labelledby="rulesModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Règles du Yam's</h1>
+                    <h1 class="modal-title fs-5" id="rulesModalLabel">Règles du Yam's</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body modal-sets">
