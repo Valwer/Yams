@@ -212,8 +212,8 @@ nav ul li div {
 }
 
 
-/* PLACEMENTS DES DES SUR LA TABLE */
-.des {
+/* PLACEMENTS/ANIMATIONS DES DES SUR LA TABLE */
+.des0 {
 	margin-left: 6%;
 	margin-top: 12vh;
 	transform: rotate(4deg); 
@@ -227,6 +227,16 @@ nav ul li div {
 	margin-left: 10vh;
 	/* margin-top: 6vh; */
 	transform: rotate(22deg); 
+}
+.des3 {
+	margin-left: 18vh;
+	margin-top: 13vh;
+	transform: rotate(-15deg); 
+}
+.des4 {
+	margin-left: 8vh;
+	margin-top: 3vh;
+	transform: rotate(-5deg); 
 }
 
 

@@ -55,3 +55,4 @@ function animateRoll() {
     // Lancer l'animation
     animate();
 }
+
