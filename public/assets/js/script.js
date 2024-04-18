@@ -1,5 +1,6 @@
 let dices = [];
 let keptDices = [];
+rollsLeft = 3;
 
 // Fonction pour simuler le lancer d'un dé
 function getRandomValue() {
@@ -38,28 +39,34 @@ function updateDiceDisplay(dice) {
 // Gestionnaire d'événement pour le bouton de relance
 const diceIcon = document.getElementById('dice-icon');
 diceIcon.addEventListener('click', function() {
-    // Obtenir les dés sélectionnés
-    const selectedDiceElements = document.querySelectorAll('.selected-dice');
-    const selectedDiceIndexes = Array.from(selectedDiceElements).map(element => parseInt(element.textContent));
-    console.log(`Dès initiaux : ${keptDices}`);
-    // Supprimer les dés sélectionnés de keptDices
-    selectedDiceIndexes.forEach(el => {
-        foundedIndex = keptDices.indexOf(el);
-        keptDices.splice(foundedIndex,1);
-    });
-    console.log(`Dès après suppression : ${keptDices}`);
-    console.log(selectedDiceIndexes);
-    // Vérifier si aucun dé n'est sélectionné
-    if (selectedDiceIndexes.length == 0 && keptDices.length < 5) {
-        newDices = rollTheDices();
-        console.log(newDices);
-        keptDices = keptDices.concat(newDices);
-    } else if (selectedDiceIndexes.length > 0) {
-        newDices = rollTheDices(selectedDiceIndexes);
-        console.log(`Nouveau lancé : ${newDices}`);
-        keptDices = keptDices.concat(newDices);
+    if (rollsLeft > 0) { // Vérifie le nombre de lancers restants
+        // Obtenir les dés sélectionnés
+        const selectedDiceElements = document.querySelectorAll('.selected-dice');
+        const selectedDiceIndexes = Array.from(selectedDiceElements).map(element => parseInt(element.textContent));
+        console.log(`Dès initiaux : ${keptDices}`);
+        // Supprimer les dés sélectionnés de keptDices
+        selectedDiceIndexes.forEach(el => {
+            foundedIndex = keptDices.indexOf(el);
+            keptDices.splice(foundedIndex,1);
+        });
+        console.log(`Dès après suppression : ${keptDices}`);
+        console.log(selectedDiceIndexes);
+        // Vérifier si aucun dé n'est sélectionné
+        if (selectedDiceIndexes.length == 0 && keptDices.length < 5) {
+            newDices = rollTheDices();
+            console.log(newDices);
+            keptDices = keptDices.concat(newDices);
+        } else if (selectedDiceIndexes.length > 0) {
+            newDices = rollTheDices(selectedDiceIndexes);
+            console.log(`Nouveau lancé : ${newDices}`);
+            keptDices = keptDices.concat(newDices);
+        }
+        rollsLeft--; // Réduire le nombre de lancers restants
+        console.log(`Lancers restants : ${rollsLeft}`);
+        console.log(keptDices);
+        updateDiceDisplay(keptDices);
+    } else {
+        console.log("Vous avez atteint le nombre maximal de lancers pour ce tour.");
     }
-    console.log(keptDices);
-    updateDiceDisplay(keptDices);
 });
 
