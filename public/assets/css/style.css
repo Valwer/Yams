@@ -1,27 +1,5 @@
-/* FONTS */
+/* NATIF ET SETS BOOTSTRAP */
 
-.montserrat-regular {
-	font-family: "Montserrat", sans-serif;
-	font-optical-sizing: auto;
-	font-weight: 500;
-	font-style: normal;
-  }
-  
-  .luckiest-guy-regular {
-	  font-family: "Luckiest Guy", cursive;
-	  font-weight: 400;
-	  font-style: normal;
-	}
-
-*,
-*:before,
-*:after {
-	box-sizing: border-box;
-}
-
-:after {
-	content: "";
-}
 
 header {
 	text-align: center;
@@ -41,12 +19,6 @@ h1 {
 
 }
 
-.bg-red {
-	background: #940000;
-}
-.bg-gold {
-	background: #DCB253;
-}
 h2 {
 	font-size: 24px;
 }
@@ -63,7 +35,23 @@ body {
 	margin-bottom: 80px;
 }
 
-/* NAVBAR */
+
+
+/* FONTS */
+.montserrat-regular {
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
+}
+  
+.luckiest-guy-regular {
+	font-family: "Luckiest Guy", cursive;
+	font-weight: 400;
+	font-style: normal;
+}
+
+/* NAVBAR (OUI TOUT CA..) */
 .bg-nav {
 	background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
 	box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
@@ -94,7 +82,7 @@ nav ul li {
 	cursor: pointer;
 	background: #940000;
 	text-transform: uppercase;
-	transition: all .6s ease-out;
+	transition: all .4s ease-in;
 	margin: 0 5px;
 	/* Espacement entre les éléments de menu */
 }
@@ -112,8 +100,8 @@ nav ul li:after {
 	/* Hauteur de l'élément de menu */
 	opacity: .5;
 	transform: perspective(400px) rotateX(-90deg);
-	transform-origin: 0 0;
-	transition: all .4s ease-out;
+	transform-origin: 45 45;
+	transition: all .4s ease-in;
 }
 
 nav ul li:nth-child(1):after {
@@ -188,41 +176,69 @@ nav ul li div {
 }
 
 
-.box-content {
+/* CONTAINER TABLE DE JEU, TABLEAU + SETTINGS MODAL */
+
+.bg-red {
+	background: #940000;
+}
+.box-content-game {
 	height: 50vh;
-	background-color: #FFFFFF;
+	background-image: url(../img/background/table2.png);
+	border-radius: 0px 0px 8px 8px;
 }
-
-
+.bg-gold {
+	background: #DCB253;
+}
+.box-content-score {
+	height: 50vh;
+	background: #FFFFFF;
+	border-radius: 0px 0px 8px 8px;
+	overflow-y: scroll;
+}
 .title-set {
-	border-radius: 8px;
+	color: #3f3f3f !important;
+	margin: 0;
+	font-size: 26px !important;
+	font-family: "Luckiest Guy", cursive;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 8px #FFFFFF,
+		2px 2px 0px #FFFFFF,
+		3px 3px 0px #FFFFFF,
+		4px 4px 0px #FFFFFF;
+	border-radius: 8px 8px 0px 0px;
+}
+.modal-sets {
+	height: 60vh;
 }
 
-/* ### LES DES ### */
 
-.face {
-    width: 100px; /* Ajustez la largeur selon vos besoins */
-    height: 100px; /* Ajustez la hauteur selon vos besoins */
-    display: inline-block;
-    background-color: white;
-    border-radius: 10px; /* Ajoute des coins arrondis */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajoute une ombre */
-    margin: 5px; /* Ajoute un espacement entre les dés */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
+/* PLACEMENTS DES DES SUR LA TABLE */
+`.des0 {
+    margin-left: 6%;
+    margin-top: 12vh;
+    transform: rotate(4deg); 
+}
+.des1 {
+    margin-left: 8vh;
+    /* margin-top: 2vh; */
+    transform: rotate(-5deg); 
+}
+.des2 {
+    margin-left: 10vh;
+    /* margin-top: 6vh; */
+    transform: rotate(22deg); 
+}
+.des3 {
+    margin-left: 18vh;
+    margin-top: 13vh;
+    transform: rotate(-15deg); 
+}
+.des4 {
+    margin-left: 8vh;
+    margin-top: 3vh;
+    transform: rotate(-5deg); 
 }
 
-/* Styles spécifiques pour chaque face */
-.face.face1 { background-color: #ff0000; } 
-.face.face2 { background-color: #ff0000; } 
-.face.face3 { background-color: #ff0000; } 
-.face.face4 { background-color: #ff0000; } 
-.face.face5 { background-color: #ff0000; } 
-.face.face6 { background-color: #ff0000; }
 
 .selected-dice{
 	border: solid;
@@ -230,4 +246,26 @@ nav ul li div {
 	border-color: green;
 }
 
+/* TABLEAU DES SCORES */
+table {
+	width: 100%;
+	
+}
+th, td {
+	padding: 8px;
+	font-size: 17px !important;
+	font-family: "Luckiest Guy", cursive;
+	color: #484747;
+	
+	
+}
+th {
+	background-color:#DCC48E; 
+	font-size: 20px !important;
+	font-family: "Luckiest Guy", cursive;
+	color: #202020;
+}
 
+.space-col {
+	border:1px solid #000000;
+}
