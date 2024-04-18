@@ -32,7 +32,7 @@ body {
 }
 
 .container-fluid {
-	margin-bottom: 80px;
+	margin-bottom: 130px;
 }
 
 
@@ -214,9 +214,9 @@ nav ul li div {
 
 /* PLACEMENTS DES DES SUR LA TABLE */
 .des {
-	margin-left: 5%;
+	margin-left: 6%;
 	margin-top: 12vh;
-	transform: rotate(45deg); 
+	transform: rotate(4deg); 
 }
 .des1 {
 	margin-left: 8vh;

@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const rulesButton = document.getElementById('rulesButton'); // Utilisation de l'ID 'rulesButton'
-    const modal = new bootstrap.Modal(document.getElementById('exampleModal')); // Créer une instance de la modal Bootstrap
+    const restartButton = document.getElementById('restartButton'); // Utilisation de l'ID 'rulesButton'
+    const modal = new bootstrap.Modal(document.getElementById('rulesModal')); // Créer une instance de la modal Bootstrap
+    const modaal = new bootstrap.Modal(document.getElementById('restartModal')); // Créer une instance de la modal Bootstrap
+
 
     rulesButton.addEventListener('click', function() {
         modal.show(); // Afficher la modal lorsque le bouton est cliqué
+    });
+    restartButton.addEventListener('click', function() {
+        modaal.show(); // Afficher la modal lorsque le bouton est cliqué
     });
 });
 
