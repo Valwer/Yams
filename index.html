@@ -7,9 +7,14 @@
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./public/assets/css/style.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/adfcc0ab0f.js" crossorigin="anonymous"></script>
+
     <title>Le yams</title>
 </head>
 
@@ -30,14 +35,10 @@
                 <div class="text-center bg-red title-set">
                     <p class="text-dark">LES DES</p>
                 </div>
-                
-                    <div class="box-content mb-3 gameZone d-flex flex-wrap">
-                        <div class="face face1"></div>
-                        <div class="face face2"></div>
-                        <div class="face face3"></div>
-                        <div class="face face4"></div>
-                        <div class="face face5"></div>
-                    </div>
+
+                <div class="box-content mb-3">
+                    <img class="ms-2 mt-2" id="dice" src="./public/assets/img/icons/dices/dices6.png" alt="Dé" />
+                </div>
             </div>
 
             <div class="col-12 col-md-6">
@@ -45,13 +46,14 @@
                 <div class="text-center bg-gold title-set">
                     <p class="text-dark">LES SCORES</p>
                 </div>
-                    <div class="box-content mb-3">
-                        
-                    </div>
+                <div class="box-content mb-3">
+
+                </div>
             </div>
 
         </div>
     </div>
+
     <!-- FIN CONTENT -->
 
 
@@ -59,13 +61,13 @@
 
     <nav class="bg-nav">
         <ul>
-            <li>
+            <li onclick="animateRoll()">
                 <div class="dice-icon"></div>
             </li>
             <li>
                 <div class="restart-icon"></div>
             </li>
-            <li>
+            <li id="rulesButton">
                 <div class="rules-icon"></div>
             </li>
             <li>
@@ -75,6 +77,74 @@
     </nav>
     <!-- FIN NAVBAR -->
 
+    <!-- MODAL -->
+    <div class="modal fade modal-dialog-scrollable mt-5" id="exampleModal" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Règles du Yam's</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-sets">
+                    <p>Le but du jeu est de marquer le plus de points possible en remplissant la grille avec différentes
+                        combinaisons de dés.</p>
+                    <hr>
+                    <p>A chaque coup, tu peux utiliser jusqu'à 3 lancers pour réussir une combinaison. Clique sur le
+                        bouton de lancer pour lancer les dès. Il faut ensuite sélectionner les dés que tu ne souhaites
+                        pas conserver pas en les cliquant : ils tourneront à nouveau lors de ton prochain jet. Pour
+                        désélectionner un dé, reclique-le.</p>
+                    <hr>
+                    <h3>Les combinaisons spéciales :</h3>
+                    <p><strong>Le brelan :</strong> 3 faces identiques <i class="fa-solid fa-dice-two fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-two fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-two fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-six fa-lg"
+                            style="color: #6e7277;"></i> <i class="fa-solid fa-dice-five fa-lg"
+                            style="color: #6e7277;"></i> Valeur : 3x la valeur de la face : 3x2=6 points <br>
+                        <strong>Le carré :</strong> 4 faces identiques <i class="fa-solid fa-dice-six fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-six fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-six fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-six fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-one fa-lg"
+                            style="color: #6e7277;"></i> Valeur : 4x la valeur de la face : 4x6=24 points <br>
+                        <strong>Le full :</strong> un brelan et une paire <i class="fa-solid fa-dice-three fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-three fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-three fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-four fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-four fa-lg"
+                            style="color: #da1025;"></i> Valeur : 25 points <br>
+                        <strong>La petite suite :</strong> une suite de quatre faces <i
+                            class="fa-solid fa-dice-two fa-lg" style="color: #da1025;"></i> <i
+                            class="fa-solid fa-dice-three fa-lg" style="color: #da1025;"></i> <i
+                            class="fa-solid fa-dice-four fa-lg" style="color: #da1025;"></i> <i
+                            class="fa-solid fa-dice-five fa-lg" style="color: #da1025;"></i> <i
+                            class="fa-solid fa-dice-three fa-lg" style="color: #6e7277;"></i> Valeur : 30 points <br>
+                        <strong>La grande suite :</strong> une suite de cinq faces <i class="fa-solid fa-dice-two fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-three fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-four fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-five fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-six fa-lg"
+                            style="color: #da1025;"></i> Valeur : 40 points <br>
+                        <strong>Le yam's :</strong> 5 faces identiques <i class="fa-solid fa-dice-one fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-one fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-one fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-one fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-one fa-lg"
+                            style="color: #da1025;"></i> Valeur : 50 points <br>
+                        <strong>La chance :</strong> N'importe quoi <i class="fa-solid fa-dice-four fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-five fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-six fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-four fa-lg"
+                            style="color: #da1025;"></i> <i class="fa-solid fa-dice-one fa-lg"
+                            style="color: #da1025;"></i> Valeur : somme des 5 faces : 4+5+6+4+1=20 points
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIN MODAL -->
 
     <script src="./public/assets/js/script.js"></script>
 </body>
