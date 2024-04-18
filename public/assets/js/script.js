@@ -47,24 +47,96 @@ console.log("Résultats des lancers des dés :", resultatDes);
 let newDice = rollTheDices(dice); // Appel de la fonction rollTheDices avec le tableau initial
 console.log("Nouveau tableau de dés :", newDice);
 
-// Opérations pour les points
-let diceValue;
-// Fonction pour calculer les totaux pour chaque valeur de dé
-function calculateTotalForDiceValue(diceResults, diceValue) {
-    return diceResults.filter(value => value === diceValue).length * diceValue;
-}
+let keptDices = [3, 1, 4, 4, 4];
 
-// Simuler le lancer des dés, afficher les résultats, et calculer les totaux
-let diceResults = rollTheDices();
-displayDice(diceResults);
-console.log("Résultats des lancers des dés :", diceResults);
 
-// Afficher les totaux pour chaque valeur de dé de 1 à 6
-Array.from({ length: 6 }, (_, i) => i + 1).forEach(value => {
-    console.log(`Total pour les dés de valeur ${value}:`, calculateTotalForDiceValue(diceResults, value));
+// afficher le cumul des 1
+
+let total = 0;
+keptDices.forEach(dice => {
+    if (dice === 1) {
+        total += dice;
+    }
 });
+console.log('Total des dés 1 : ' + total);
 
-if (diceResults.includes((diceValue === diceValue) * 3)) {
-    console.log('Brelan')
+// afficher le cumul des 4
 
+total = 0;
+keptDices.forEach(dice => {
+    if (dice === 4) {
+        total += 1;
+    }
+})
+console.log('Total des dés 4 : ' + total);
+
+// afficher le cumul des 5
+
+total = 0;
+keptDices.forEach(dice => {
+    if (dice === 5) {
+        total += 1;
+    }
+})
+
+console.log('Total des dés 5 : ' + total);
+
+// afficher le cumul des 6
+
+total = 0;
+keptDices.forEach(dice => {
+    if (dice === 6) {
+        total += 1;
+    }
+})
+console.log('total des dés 6 :' + total)
+
+// afficher le cumul des 3
+
+total = 0;
+keptDices.forEach(dice => {
+    if (dice === 3) {
+        total += 1;
+    }
+});
+console.log('Total des dés 3 : ' + total);
+
+// afficher le cumul des 2
+
+
+function cumul(array, diceValue) {
+    total = 0;
+    array.forEach(dice => {
+        if (dice === diceValue) {
+            total += dice;
+        }
+    });
+    console.log('Total des dés : ' + total);
 }
+cumul(keptDices, 4)
+
+function calculate(diceRolls) {
+    const diceCounts = {};
+
+    // Compter les occurrences de chaque valeur de dé
+    diceRolls.forEach(diceValue => {
+        if (diceCounts[diceValue]) {
+            diceCounts[diceValue]++;
+        } else {
+            diceCounts[diceValue] = 1;
+        }
+    });
+
+    // Vérifier s'il y a un brelan
+    for (let value in diceCounts) {
+        if (diceCounts[value] === 3) {
+            console.log('Brelan');
+            return;
+        }
+    }
+
+    console.log('Pas de brelan');
+}
+
+// Exemple d'utilisation
+calculate([3, 3, 3, 1, 4]);  // Affichera "Brelan"
