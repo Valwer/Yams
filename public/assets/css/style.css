@@ -224,4 +224,10 @@ nav ul li div {
 .face.face5 { background-color: #ff0000; } 
 .face.face6 { background-color: #ff0000; }
 
+.selected-dice{
+	border: solid;
+	border-radius: 10px;
+	border-color: green;
+}
+
 
