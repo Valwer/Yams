@@ -1,46 +1,78 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./public/assets/css/style.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <title>Le yams</title>
 </head>
-<body>
 
+<body>
+    <!-- HEADER -->
     <header>
-        <h1>Le jeu du Yammm's</h1>
+        <h1 class="mt-3">Le jeu du Yam's</h1>
     </header>
-    <div class="container">
+    <!-- FIN HEADER -->
+
+
+    <!-- CONTENT -->
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="dices text-center bg-danger">
-                    <p class=" text-dark">LES DES</p>
+
+            <div class="col-12 col-md-6">
+                <!-- GAME -->
+                <div class="text-center bg-red title-set">
+                    <p class="text-dark">LES DES</p>
                 </div>
-                <div class=" text-center bg-warning">
-                    <p class=" text-dark">LES SCORES</p>
-                </div>
+                
+                    <div class="box-content mb-3">
+                        
+                    </div>
             </div>
+
+            <div class="col-12 col-md-6">
+                <!-- LEADERBOARD -->
+                <div class="text-center bg-gold title-set">
+                    <p class="text-dark">LES SCORES</p>
+                </div>
+                    <div class="box-content mb-3">
+                        
+                    </div>
+            </div>
+
         </div>
     </div>
-   
-    
-<nav>
-    <ul>
-        <li>
-            <div class="work-icon">
-                <div class="paper"></div>
-                <div class="lines"></div>
-                <div class="lines"></div>
-                <div class="lines"></div>
-            </div>
-        </li>
-        <li>
-            <div class="dice-icon"></div>
-        </li>
-    </ul>
-</nav>
-<script src="./public/assets/js/script.js"></script>
+    <!-- FIN CONTENT -->
+
+
+    <!-- NAVBAR -->
+
+    <nav class="bg-nav">
+        <ul>
+            <li>
+                <div class="dice-icon"></div>
+            </li>
+            <li>
+                <div class="restart-icon"></div>
+            </li>
+            <li>
+                <div class="rules-icon"></div>
+            </li>
+            <li>
+                <div class="infos-icon"></div>
+            </li>
+        </ul>
+    </nav>
+    <!-- FIN NAVBAR -->
+
+
+    <script src="./public/assets/js/script.js"></script>
 </body>
+
 </html>
