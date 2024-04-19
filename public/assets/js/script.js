@@ -78,7 +78,7 @@ diceIcon.addEventListener('click', function() {
     }
 });
 
-let newDice = rollTheDices(dice); // Appel de la fonction rollTheDices avec le tableau initial
+let newDice = rollTheDices(dices); // Appel de la fonction rollTheDices avec le tableau initial
 console.log("Nouveau tableau de dés :", newDice);
 
 
@@ -174,3 +174,6 @@ function calculate(diceRolls) {
 
 // Exemple d'utilisation
 calculate([3, 3, 3, 1, 4]);  // Affichera "Brelan"
+
+
+
