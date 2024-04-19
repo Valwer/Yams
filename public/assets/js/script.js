@@ -1,79 +1,87 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const rulesButton = document.getElementById('rulesButton'); // Utilisation de l'ID 'rulesButton'
-    const restartButton = document.getElementById('restartButton'); // Utilisation de l'ID 'rulesButton'
-    const modal = new bootstrap.Modal(document.getElementById('rulesModal')); // Créer une instance de la modal Bootstrap
-    const modaal = new bootstrap.Modal(document.getElementById('restartModal')); // Créer une instance de la modal Bootstrap
+let dices = [];
+let keptDices = [];
+rollsLeft = 3;
 
-
-    rulesButton.addEventListener('click', function() {
-        modal.show(); // Afficher la modal lorsque le bouton est cliqué
-    });
-    restartButton.addEventListener('click', function() {
-        modaal.show(); // Afficher la modal lorsque le bouton est cliqué
-    });
-});
-
-const lancerDe = function () {
-    const numberDecimal = (Math.random() * 6) + 1
-    const number = Math.trunc(numberDecimal)
-    return number
-};
-
- 
-const result = lancerDe()
-
-console.log(lancerDe())
-
-
-// Fonction pour simuler le lancer de dés
-function rollDice() {
+// Fonction pour simuler le lancer d'un dé
+function getRandomValue() {
     return Math.floor(Math.random() * 6) + 1;
 }
 
-// Fonction rollTheDices : Réinitialise les valeurs des dés avec de nouvelles valeurs aléatoires
-function rollTheDices(dice = [0, 0, 0, 0, 0]) {
-    // Créer un nouveau tableau pour stocker les nouvelles valeurs des dés
+// Fonction pour réinitialiser les valeurs des dés avec de nouvelles valeurs aléatoires
+function rollTheDices(dice = [0, 0, 0, 0, 0], selectedIndexes) {
     let newDice = [];
-
-    // Parcourir le tableau de dés initial
     for (let i = 0; i < dice.length; i++) {
         newDice.push(getRandomValue());
     }
-
     return newDice;
 }
-// console.log(rollTheDices([1,3,5]));
 
-function displayDice(dice) {
+function updateDiceDisplay(dice) {
     // Sélectionner l'élément HTML qui contient les dés
     const diceContainer = document.querySelector('#dice');
 
     // Nettoyer le contenu précédent
     diceContainer.innerHTML = '';
-
-    // Parcourir le tableau de dés
     dice.forEach((value, index) => {
-        // Créer un élément pour représenter le dé
-        const diceElement = document.createElement('div');
-        diceElement.classList.add('face');
-        diceElement.classList.add('face' + value); // Ajouter une classe pour représenter la face du dé
-        diceElement.textContent = value; // Afficher la valeur du dé
-        diceContainer.appendChild(diceElement); // Ajouter le dé au conteneur des dés
+
+        let diceElement = `<img class="dice des${index}" src="./public/assets/img/icons/dices/dic${value}.png" alt="Dé" data-value="${value}" />`;
+        diceContainer.innerHTML += diceElement;
+        
     });
+    
+    selectedDices = document.querySelectorAll('.dice');
+
+selectedDices.forEach(selectedDice => {
+    
+    selectedDice.addEventListener('click', function() {
+        // Ajouter ou retirer la classe .selected-dice lorsqu'on clique sur un dé
+        selectedDice.classList.toggle('selected-dice');
+    });
+});
+
+
 }
 
-// Exemple d'utilisation de la fonction displayDice
-const dice = rollTheDices(); // Exemple de tableau de dés
-displayDice(dice); // Appel de la fonction pour afficher les dés sur la page
 
-let resultatDes = rollTheDices();
-console.log("Résultats des lancers des dés :", resultatDes);
 
+// Gestionnaire d'événement pour le bouton de relance
+const diceIcon = document.getElementById('dice-icon');
+diceIcon.addEventListener('click', function() {
+    if (rollsLeft > 0) { // Vérifie le nombre de lancers restants
+        // Obtenir les dés sélectionnés
+        const selectedDiceElements = document.querySelectorAll('.selected-dice');
+        const selectedDiceIndexes = Array.from(selectedDiceElements).map(element => parseInt(element.textContent));
+        console.log(`Dès initiaux : ${keptDices}`);
+        // Supprimer les dés sélectionnés de keptDices
+        selectedDiceIndexes.forEach(el => {
+            foundedIndex = keptDices.indexOf(el);
+            keptDices.splice(foundedIndex,1);
+        });
+        console.log(`Dès après suppression : ${keptDices}`);
+        console.log(selectedDiceIndexes);
+        // Vérifier si aucun dé n'est sélectionné
+        if (selectedDiceIndexes.length == 0 && keptDices.length < 5) {
+            newDices = rollTheDices();
+            console.log(newDices);
+            keptDices = keptDices.concat(newDices);
+        } else if (selectedDiceIndexes.length > 0) {
+            newDices = rollTheDices(selectedDiceIndexes);
+            console.log(`Nouveau lancé : ${newDices}`);
+            keptDices = keptDices.concat(newDices);
+        }
+        rollsLeft--; // Réduire le nombre de lancers restants
+        console.log(`Lancers restants : ${rollsLeft}`);
+        console.log(keptDices);
+        updateDiceDisplay(keptDices);
+    } else {
+        console.log("Vous avez atteint le nombre maximal de lancers pour ce tour.");
+    }
+});
 
 let newDice = rollTheDices(dice); // Appel de la fonction rollTheDices avec le tableau initial
 console.log("Nouveau tableau de dés :", newDice);
 
-let keptDices = [3, 1, 4, 4, 4];
+
 
 
 // afficher le cumul des 1
@@ -161,7 +169,8 @@ function calculate(diceRolls) {
         }
     }
 
-    // Lancer l'animation
-    animate();
+    console.log('Pas de brelan');
 }
 
+// Exemple d'utilisation
+calculate([3, 3, 3, 1, 4]);  // Affichera "Brelan"
