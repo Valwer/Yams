@@ -83,40 +83,42 @@ function updateDiceDisplay(dice) {
 
 function lancerDes() {
     if (rollsLeft > 0) {
-      // Vérifie le nombre de lancers restants
-      // Obtenir les dés sélectionnés
-      const selectedDiceElements = document.querySelectorAll(".selected-dice");
-      const selectedDiceIndexes = Array.from(selectedDiceElements).map(
-        (element) => parseInt(element.dataset.value)
-      );
-      console.log(`Dès initiaux : ${keptDices}`);
-      // Supprimer les dés sélectionnés de keptDices
-      selectedDiceIndexes.forEach((el) => {
-        foundedIndex = keptDices.indexOf(el);
-        keptDices.splice(foundedIndex, 1);
-      });
-      console.log(`Dès après suppression : ${keptDices}`);
-      console.log(selectedDiceIndexes);
-      // Vérifier si aucun dé n'est sélectionné
-      if (selectedDiceIndexes.length == 0 && keptDices.length < 5) {
-        newDices = rollTheDices();
-        console.log(newDices);
-        keptDices = keptDices.concat(newDices);
-      } else if (selectedDiceIndexes.length > 0) {
-        newDices = rollTheDices(selectedDiceIndexes);
-        console.log(`Nouveau lancé : ${newDices}`);
-        keptDices = keptDices.concat(newDices);
-      }
-      rollsLeft--; // Réduire le nombre de lancers restants
-      console.log(`Lancers restants : ${rollsLeft}`);
-      console.log(keptDices);
-      updateDiceDisplay(keptDices);
+        // Vérifie le nombre de lancers restants
+        // Obtenir les dés sélectionnés
+        const selectedDiceElements = document.querySelectorAll(".selected-dice");
+        const selectedDiceIndexes = Array.from(selectedDiceElements).map(
+            (element) => parseInt(element.dataset.value)
+        );
+        console.log(`Dès initiaux : ${keptDices}`);
+        // Supprimer les dés sélectionnés de keptDices
+        selectedDiceIndexes.forEach((el) => {
+            foundedIndex = keptDices.indexOf(el);
+            keptDices.splice(foundedIndex, 1);
+        });
+        console.log(`Dès après suppression : ${keptDices}`);
+        console.log(selectedDiceIndexes);
+        // Vérifier si aucun dé n'est sélectionné
+        if (selectedDiceIndexes.length == 0 && keptDices.length < 5) {
+            newDices = rollTheDices();
+            console.log(newDices);
+            keptDices = keptDices.concat(newDices);
+        } else if (selectedDiceIndexes.length > 0) {
+            newDices = rollTheDices(selectedDiceIndexes);
+            console.log(`Nouveau lancé : ${newDices}`);
+            keptDices = keptDices.concat(newDices);
+        }
+        rollsLeft--; // Réduire le nombre de lancers restants
+        console.log(`Lancers restants : ${rollsLeft}`);
+        console.log(keptDices);
+        updateDiceDisplay(keptDices);
     } else {
         console.log("Vous avez atteint le nombre maximal de lancers pour ce tour.");
     }
 }
 
-function calculatePoint(operation, dices){
+// Calculer les points en fonction de l'opération et des dés rentrés en paramètre
+
+function calculatePoint(operation, dices) {
     let total = 0;
 
     // Utilisation d'un switch pour évaluer l'opération
@@ -130,9 +132,11 @@ function calculatePoint(operation, dices){
                     break;
                 }
             }
-            if(brelan) {
-                // Calculer le total comme la somme de tous les dès
-                total = dices.reduce((acc,curr) => acc + curr, 0)
+            if (brelan) {
+                // Trouver les dés faisant partie du brelan
+                let brelanDice = dices.filter(dice => dices.filter(d => d === dice).length >= 3);
+                // Calculer le total comme la somme de tous les dés faisant partie du brelan
+                total = brelanDice.reduce((acc, curr) => acc + curr, 0);
             }
             break;
         case "carré":
@@ -144,8 +148,10 @@ function calculatePoint(operation, dices){
                 }
             }
             if (carre) {
-                // Calculer le total comme la somme de tous les dés
-                total = dices.reduce((acc, curr) => acc + curr, 0);
+                // Trouver les dés faisant partie du brelan
+                let carreDice = dices.filter(dice => dices.filter(d => d === dice).length >= 4);
+                // Calculer le total comme la somme de tous les dés faisant partie du brelan
+                total = carreDice.reduce((acc, curr) => acc + curr, 0);
             }
             break;
         case "full":
@@ -155,25 +161,25 @@ function calculatePoint(operation, dices){
             if (count.includes(2) && count.includes(3)) {
                 full = true;
                 // Calculer le total comme la somme de tous les dés
-                total = dices.reduce((acc, curr) => acc + curr, 0);
+                total = 25;
             }
             break;
         case "petite_suite":
             // Vérifier s'il y a une petite suite
-        let smallStraight = false;
-        if (new Set(dices).size >= 4 && (!dices.includes(6) || !dices.includes(1))) {
-            smallStraight = true;
-            total = 30;
-        }
-        break;
+            let smallStraight = false;
+            if (new Set(dices).size >= 4 && (!dices.includes(6) || !dices.includes(1))) {
+                smallStraight = true;
+                total = 30;
+            }
+            break;
         case "grande_suite":
             // Vérifier s'il y a une grande suite
-        let largeStraight = false;
-        if (new Set(dices).size === 5 && (!dices.includes(6) || !dices.includes(1))) {
-            largeStraight = true;
-            total = 40; 
-        }
-        break;
+            let largeStraight = false;
+            if (new Set(dices).size === 5 && (!dices.includes(6) || !dices.includes(1))) {
+                largeStraight = true;
+                total = 40;
+            }
+            break;
         case "yams":
             // Vérifier si il y a un yams
             let yams = false;
@@ -185,7 +191,7 @@ function calculatePoint(operation, dices){
         case "chance":
             // Calculer le total comme la somme de tous les dés
             total = dices.reduce((acc, curr) => acc + curr, 0);
-        break;
+            break;
         case "cumul_1":
         case "cumul_2":
         case "cumul_3":
@@ -198,11 +204,12 @@ function calculatePoint(operation, dices){
         default:
             console.log("opération non prise en charge")
     }
+    return total
 }
 //--------------------------------------
-
 // Script principal
-calculatePoint(brelan,4)
+arrayNumbers = [6, 1, 3, 6, 6]
+console.log(calculatePoint("cumul_6", arrayNumbers))
 
 const result = lancerDe()
 console.log(lancerDe())
