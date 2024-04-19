@@ -206,10 +206,17 @@ function calculatePoint(operation, dices){
             // Calculer le total comme la somme de tous les dés
             total = dices.reduce((acc, curr) => acc + curr, 0);
         break;
-
-
-        default:
+        case "cumul_1":
+        case "cumul_2":
+        case "cumul_3":
+        case "cumul_4":
+        case "cumul_5":
+        case "cumul_6":
+            // Calculer le total comme la somme des dés ayant la valeur correspondante
+            total = dices.filter(dice => dice == parseInt(operation.split('_')[1])).reduce((acc, curr) => acc + curr, 0);
             break;
+        default:
+            console.log("opération non prise en charge")
     }
 }
 //--------------------------------------
