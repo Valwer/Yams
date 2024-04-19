@@ -195,6 +195,8 @@ function calculatePoint(operation, dices){
 //--------------------------------------
 
 // Script principal
+calculatePoint(brelan,4)
+
 const result = lancerDe()
 console.log(lancerDe())
 let newDice = rollTheDices(dices); // Appel de la fonction rollTheDices avec le tableau initial
