@@ -287,7 +287,7 @@ nav ul li div {
 .selected-dice{
 	border: solid 4px;
 	border-radius: 10px;
-	border-color: rgb(255, 255, 255);
+	border-color: white;
 }
 
 /* TABLEAU DES SCORES */

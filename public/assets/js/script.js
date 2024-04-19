@@ -6,6 +6,7 @@ rollsLeft = 3;
 
 // Les sélecteurs
 const diceIcon = document.getElementById("dice-icon");
+const scoreCells = document.querySelectorAll(".space-col");
 
 // Toutes les Fonctions-------------
 
@@ -107,6 +108,14 @@ function lancerDes() {
             console.log(`Nouveau lancé : ${newDices}`);
             keptDices = keptDices.concat(newDices);
         }
+        // Appeler calculatePoint() pour chaque combinaison possible et afficher les résultats
+        const combinations = ["brelan", "carre", "full", "petite_suite", "grande_suite", "yams", "chance", "cumul_1", "cumul_2", "cumul_3", "cumul_4", "cumul_5", "cumul_6"];
+        combinations.forEach(combination => {
+            const points = calculatePoint(combination, keptDices);
+            console.log(`Points pour ${combination} : ${points}`);
+        });
+
+        
         rollsLeft--; // Réduire le nombre de lancers restants
         console.log(`Lancers restants : ${rollsLeft}`);
         console.log(keptDices);
@@ -114,6 +123,12 @@ function lancerDes() {
     } else {
         console.log("Vous avez atteint le nombre maximal de lancers pour ce tour.");
     }
+}
+
+// Fonction pour calculer le score pour une catégorie donnée
+function calculateScoreForCategory(category, dices) {
+    // Utilisez la fonction calculatePoint avec la catégorie et les dés pour obtenir le score
+    return calculatePoint(category, dices);
 }
 
 // Calculer les points en fonction de l'opération et des dés rentrés en paramètre
@@ -138,7 +153,8 @@ function calculatePoint(operation, dices) {
                 total = scoreToAdd;
             }
             break;
-        case "carré":
+        case "carre":
+            let carre = false;
             for (let i = 1; i <= 6; i++) {
                 if (dices.filter(dice => dice === i).length >= 4) {
                     carre = true;
@@ -207,6 +223,8 @@ function calculatePoint(operation, dices) {
     return total;
 }
 
+
+
 //--------------------------------------
 // Script principal
 
@@ -266,3 +284,16 @@ ajouterScore("Brelan", 25);
 // Afficher le score total
 console.log("Score Total:", yamsScores.getTotal());
 
+// Parcourir chaque cellule et ajoutez un événement de clic à chacune
+scoreCells.forEach((cell) => {
+    cell.addEventListener("click", function() {
+        // Récupérez la catégorie de la cellule
+        const category = cell.querySelector("td:first-child").textContent.trim();
+        // Calculez le score pour cette catégorie
+        const score = calculateScoreForCategory(category, keptDices); // Utilisez keptDices comme dés pour le calcul
+        // Mettez à jour le contenu de la cellule avec le score calculé
+        cell.querySelector("td:last-child").textContent = score;
+        // Ajoutez la classe "filled" pour indiquer que la cellule est remplie avec un score
+        cell.classList.add("filled");
+    });
+});
