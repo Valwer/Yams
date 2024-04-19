@@ -83,62 +83,115 @@ function updateDiceDisplay(dice) {
 
 function lancerDes() {
     if (rollsLeft > 0) {
-        // Vérifie le nombre de lancers restants
-        // Obtenir les dés sélectionnés
-        const selectedDiceElements = document.querySelectorAll(".selected-dice");
-        const selectedDiceIndexes = Array.from(selectedDiceElements).map(
-            (element) => parseInt(element.textContent)
-        );
-        console.log(`Dès initiaux : ${keptDices}`);
-        // Supprimer les dés sélectionnés de keptDices
-        selectedDiceIndexes.forEach((el) => {
-            foundedIndex = keptDices.indexOf(el);
-            keptDices.splice(foundedIndex, 1);
-        });
-        console.log(`Dès après suppression : ${keptDices}`);
-        console.log(selectedDiceIndexes);
-        // Vérifier si aucun dé n'est sélectionné
-        if (selectedDiceIndexes.length == 0 && keptDices.length < 5) {
-            newDices = rollTheDices();
-            console.log(newDices);
-            keptDices = keptDices.concat(newDices);
-        } else if (selectedDiceIndexes.length > 0) {
-            newDices = rollTheDices(selectedDiceIndexes);
-            console.log(`Nouveau lancé : ${newDices}`);
-            keptDices = keptDices.concat(newDices);
-        }
-        rollsLeft--; // Réduire le nombre de lancers restants
-        console.log(`Lancers restants : ${rollsLeft}`);
-        console.log(keptDices);
-        updateDiceDisplay(keptDices);
+      // Vérifie le nombre de lancers restants
+      // Obtenir les dés sélectionnés
+      const selectedDiceElements = document.querySelectorAll(".selected-dice");
+      const selectedDiceIndexes = Array.from(selectedDiceElements).map(
+        (element) => parseInt(element.dataset.value)
+      );
+      console.log(`Dès initiaux : ${keptDices}`);
+      // Supprimer les dés sélectionnés de keptDices
+      selectedDiceIndexes.forEach((el) => {
+        foundedIndex = keptDices.indexOf(el);
+        keptDices.splice(foundedIndex, 1);
+      });
+      console.log(`Dès après suppression : ${keptDices}`);
+      console.log(selectedDiceIndexes);
+      // Vérifier si aucun dé n'est sélectionné
+      if (selectedDiceIndexes.length == 0 && keptDices.length < 5) {
+        newDices = rollTheDices();
+        console.log(newDices);
+        keptDices = keptDices.concat(newDices);
+      } else if (selectedDiceIndexes.length > 0) {
+        newDices = rollTheDices(selectedDiceIndexes);
+        console.log(`Nouveau lancé : ${newDices}`);
+        keptDices = keptDices.concat(newDices);
+      }
+      rollsLeft--; // Réduire le nombre de lancers restants
+      console.log(`Lancers restants : ${rollsLeft}`);
+      console.log(keptDices);
+      updateDiceDisplay(keptDices);
     } else {
         console.log("Vous avez atteint le nombre maximal de lancers pour ce tour.");
     }
 }
 
-function calculate(diceRolls) {
-    let diceCounts = {};
+function calculatePoint(operation, dices){
+    let total = 0;
 
-    // Compter les occurrences de chaque valeur de dé
-    diceRolls.forEach((diceValue) => {
-        if (diceCounts[diceValue]) {
-            diceCounts[diceValue]++;
-        } else {
-            diceCounts[diceValue] = 1;
+    // Utilisation d'un switch pour évaluer l'opération
+    switch (operation) {
+        case "brelan":
+            let brelan = false;
+            // itération sur chaque valeur de dès possibles
+            for (let i = 1; i <= 6; i++) {
+                if (dices.filter(dice => dice === i).length >= 3) {
+                    brelan = true;
+                    break;
+                }
+            }
+            if(brelan) {
+                // Calculer le total comme la somme de tous les dès
+                total = dices.reduce((acc,curr) => acc + curr, 0)
+            }
+            break;
+        case "carré":
+            let carre = false;
+            for (let i = 1; i <= 6; i++) {
+                if (dices.filter(dice => dice === i).length >= 4) {
+                    carre = true;
+                    break;
+                }
+            }
+            if (carre) {
+                // Calculer le total comme la somme de tous les dés
+                total = dices.reduce((acc, curr) => acc + curr, 0);
+            }
+            break;
+        case "full":
+            let full = false;
+            let count = Array.from({ length: 7 }, () => 0); // Initialiser un tableau de comptage pour chaque valeur de dé
+            dices.forEach(dice => count[dice]++); // Compter le nombre de chaque valeur de dé
+            if (count.includes(2) && count.includes(3)) {
+                full = true;
+                // Calculer le total comme la somme de tous les dés
+                total = dices.reduce((acc, curr) => acc + curr, 0);
+            }
+            break;
+        case "petite_suite":
+            // Vérifier s'il y a une petite suite
+        let smallStraight = false;
+        if (new Set(dices).size >= 4 && (!dices.includes(6) || !dices.includes(1))) {
+            smallStraight = true;
+            total = 30;
         }
-    });
-    // Vérifier s'il y a un brelan
-    for (let value in diceCounts) {
-        if (diceCounts[value] === 3) {
-            console.log("Brelan");
-            return;
+        break;
+        case "grande_suite":
+            // Vérifier s'il y a une grande suite
+        let largeStraight = false;
+        if (new Set(dices).size === 5 && (!dices.includes(6) || !dices.includes(1))) {
+            largeStraight = true;
+            total = 40; 
         }
+        break;
+        case "yams":
+            // Vérifier si il y a un yams
+            let yams = false;
+            if (new Set(dices).size === 1) {
+                yams = true;
+                total = 50; // La valeur d'un yams est de 50 points
+            }
+            break;
+        case "chance":
+            // Calculer le total comme la somme de tous les dés
+            total = dices.reduce((acc, curr) => acc + curr, 0);
+        break;
+
+
+        default:
+            break;
     }
-    console.log("Pas de brelan");
 }
-
-// Exemple d'utilisation
-calculate([3, 3, 3, 1, 4]); // Affichera "Brelan"
 //--------------------------------------
 
 // Script principal
