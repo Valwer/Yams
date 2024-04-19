@@ -1,3 +1,4 @@
+// Déclaration de variables-------------
 let dices = [];
 let keptDices = [];
 rollsLeft = 3;
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     infoButton.addEventListener('click', function () {
         infoModal.show(); // Afficher la modal lorsque le bouton est cliqué
     });
-});
+}
 
 const lancerDe = function () {
     const numberDecimal = (Math.random() * 6) + 1
@@ -135,6 +136,9 @@ diceIcon.addEventListener("click", function () {
     }
 });
 
+// Script principal
+const result = lancerDe()
+console.log(lancerDe())
 let newDice = rollTheDices(dices); // Appel de la fonction rollTheDices avec le tableau initial
 console.log("Nouveau tableau de dés :", newDice);
 
