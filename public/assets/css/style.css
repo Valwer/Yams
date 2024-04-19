@@ -279,3 +279,8 @@ th {
 .space-col {
 	border:1px solid #000000;
 }
+
+.center-element {
+	text-align: center;
+}
+

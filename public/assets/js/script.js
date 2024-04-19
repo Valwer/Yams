@@ -9,25 +9,7 @@ const diceIcon = document.getElementById("dice-icon");
 
 // Toutes les Fonctions-------------
 
-function openModal() {
-    const rulesButton = document.getElementById('rulesButton'); // Utilisation de l'ID 'rulesButton'
-    const restartButton = document.getElementById('restartButton'); // Utilisation de l'ID 'rulesButton'
-    const infoButton = document.getElementById('infoButton'); // Utilisation de l'ID 'rulesButton'
-    const rulesModal = new bootstrap.Modal(document.getElementById('rulesModal')); // Créer une instance de la modal Bootstrap
-    const restartModal = new bootstrap.Modal(document.getElementById('restartModal')); // Créer une instance de la modal Bootstrap
-    const infoModal = new bootstrap.Modal(document.getElementById('infoModal')); // Créer une instance de la modal Bootstrap
 
-
-    rulesButton.addEventListener('click', function() {
-        rulesModal.show(); // Afficher la modal lorsque le bouton est cliqué
-    });
-    restartButton.addEventListener('click', function() {
-        restartModal.show(); // Afficher la modal lorsque le bouton est cliqué
-    });
-    infoButton.addEventListener('click', function() {
-        infoModal.show(); // Afficher la modal lorsque le bouton est cliqué
-    });
-}
 
 const lancerDe = function () {
     const numberDecimal = (Math.random() * 6) + 1
@@ -145,5 +127,4 @@ console.log("Nouveau tableau de dés :", newDice);
 
 
 // Ecouteurs
-document.addEventListener('DOMContentLoaded', openModal);
 diceIcon.addEventListener("click", lancerDes); // Gestionnaire d'événement pour le bouton de relance

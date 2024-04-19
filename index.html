@@ -7,11 +7,12 @@
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="./public/assets/css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="./public/assets/css/style.css">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
     <script src="./node_modules/bootstrap/dist/js/bootstrap.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/adfcc0ab0f.js" crossorigin="anonymous"></script>
     <title>Le yams</title>
@@ -161,13 +162,13 @@
             <li id="dice-icon">
                 <div class="dice-icon"></div>
             </li>
-            <li id="restartButton">
+            <li data-bs-toggle="modal" data-bs-target="#restartModal">
                 <div class="restart-icon"></div>
             </li>
-            <li id="rulesButton">
+            <li data-bs-toggle="modal" data-bs-target="#rulesModal">
                 <div class="rules-icon"></div>
             </li>
-            <li id="infoButton">
+            <li data-bs-toggle="modal" data-bs-target="#infoModal">
                 <div class="infos-icon"></div>
             </li>
         </ul>
@@ -264,27 +265,33 @@
     </div>
 
 
-        <!-- MODAL INFOS -->
-    <!-- Modal -->
+    <!-- MODAL INFOS -->
     <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoButtonLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h1 class="modal-title fs-5" id="infoButtonLabel"></h1>
+            <h1 class="modal-title fs-5" id="infoButtonLabel">Plus d'infos</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <p class="luckiest-guy-regular">Développer avec passion et amour.</p>
-            <p class="luckiest-guy-regular">Par Coraline, Val et Alex.</p>
-            <p style="text-align: center;"><i class="bi bi-github"></i> <a href="https://github.com/ThunderHime" alt="Coraline Boulenger">Coraline</a> - <a href="https://github.com/Valwer" alt="Valwer"><i class="bi bi-github"></i> Val</a> - <a href="https://github.com/xR3PMz" alt="xR3PMz"><i class="bi bi-github"></i> Alex</a></p>
+            
+            <div class="center-element">Merci d'utiliser notre jeu de Yam's <img src="./public/assets/img/icons/dices/casino.png"></div>
+            <div class="mb-3 center-element">Réalisé par un groupe d'élèves de l'école la Manu.</div>
+                <hr>
+            <p class="luckiest-guy-regular">Lien vers les développeurs:</p>
+            <div class="center-element">
+                <div><i class="fa-brands fa-github"></i> <a href="https://github.com/ThunderHime" alt="Coraline Boulenger">Coraline</a></div>  
+                <div><i class="fa-brands fa-github"></i> <a href="https://github.com/Valwer" alt="Valwer">Val</a></div>
+                <div><i class="fa-brands fa-github"></i> <a href="https://github.com/xR3PMz" alt="xR3PMz"> Alex</a></div>
+            </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary" onclick='window.location.reload(false)' value="Rafraichir">Relancer</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
             </div>
         </div>
         </div>
     </div>
+    
     <!-- FIN MODAL -->
 
     <script src="./public/assets/js/script.js"></script>
