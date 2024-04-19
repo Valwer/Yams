@@ -1,3 +1,6 @@
+console.log('test')
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const rulesButton = document.getElementById('rulesButton'); // Utilisation de l'ID 'rulesButton'
     const restartButton = document.getElementById('restartButton'); // Utilisation de l'ID 'rulesButton'
