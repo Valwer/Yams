@@ -9,8 +9,6 @@ const diceIcon = document.getElementById("dice-icon");
 
 // Toutes les Fonctions-------------
 
-
-
 const lancerDe = function () {
     const numberDecimal = (Math.random() * 6) + 1
     const number = Math.trunc(numberDecimal)
@@ -69,7 +67,7 @@ function updateDiceDisplay(dice) {
   // Nettoyer le contenu précédent
   diceContainer.innerHTML = "";
   dice.forEach((value, index) => {
-    let diceElement = `<img class="dice des${index}" src="./public/assets/img/icons/dices/dic${value}.png" alt="Dé" data-value="${value}" />`;
+    let diceElement = `<img class="dice des${index} dices-custom" src="./public/assets/img/icons/dices/dic${value}.png" alt="Dé" data-value="${value}" />`;
     diceContainer.innerHTML += diceElement;
   });
 
