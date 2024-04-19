@@ -222,6 +222,15 @@ diceIcon.addEventListener("click", lancerDes); // Gestionnaire d'événement pou
 // Objet yamsScores contenant des tableaux
 
 let yamsScores = {
+    As: [],
+    Deux: [],
+    Trois: [],
+    Quatre: [],
+    Cinq: [],
+    Six: [],
+    Total: [],
+    Bonus: [],
+    Total1: [],
     Brelan: [],
     Carré: [],
     Full: [],
@@ -229,6 +238,9 @@ let yamsScores = {
     GrandeSuite: [],
     Yams: [],
     Chance: [],
+    Total2: [],
+    Score: [],
+
     getTotal: function () {
         let total = 0;
         for (let key in this) {
