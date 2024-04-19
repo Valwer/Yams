@@ -120,96 +120,95 @@ function lancerDes() {
 
 function calculatePoint(operation, dices) {
     let total = 0;
+    let brelan = false, carre = false, full = false, smallStraight = false, largeStraight = false, yams = false;
+    let scoreToAdd = 0;
 
     // Utilisation d'un switch pour évaluer l'opération
     switch (operation) {
         case "brelan":
-            let brelan = false;
-            // itération sur chaque valeur de dès possibles
             for (let i = 1; i <= 6; i++) {
                 if (dices.filter(dice => dice === i).length >= 3) {
                     brelan = true;
+                    scoreToAdd = dices.filter(dice => dice === i).reduce((acc, curr) => acc + curr, 0);
                     break;
                 }
             }
             if (brelan) {
-                // Trouver les dés faisant partie du brelan
-                let brelanDice = dices.filter(dice => dices.filter(d => d === dice).length >= 3);
-                // Calculer le total comme la somme de tous les dés faisant partie du brelan
-                total = brelanDice.reduce((acc, curr) => acc + curr, 0);
+                categoriesScores.Brelan.push(scoreToAdd);
+                total = scoreToAdd;
             }
             break;
         case "carré":
-            let carre = false;
             for (let i = 1; i <= 6; i++) {
                 if (dices.filter(dice => dice === i).length >= 4) {
                     carre = true;
+                    scoreToAdd = dices.filter(dice => dice === i).reduce((acc, curr) => acc + curr, 0);
                     break;
                 }
             }
             if (carre) {
-                // Trouver les dés faisant partie du brelan
-                let carreDice = dices.filter(dice => dices.filter(d => d === dice).length >= 4);
-                // Calculer le total comme la somme de tous les dés faisant partie du brelan
-                total = carreDice.reduce((acc, curr) => acc + curr, 0);
+                categoriesScores.Carré.push(scoreToAdd);
+                total = scoreToAdd;
             }
             break;
         case "full":
-            let full = false;
-            let count = Array.from({ length: 7 }, () => 0); // Initialiser un tableau de comptage pour chaque valeur de dé
-            dices.forEach(dice => count[dice]++); // Compter le nombre de chaque valeur de dé
+            let count = Array.from({ length: 7 }, () => 0);
+            dices.forEach(dice => count[dice]++);
             if (count.includes(2) && count.includes(3)) {
                 full = true;
-                // Calculer le total comme la somme de tous les dés
-                total = 25;
+                scoreToAdd = 25;
+            }
+            if (full) {
+                categoriesScores.Full.push(scoreToAdd);
+                total = scoreToAdd;
             }
             break;
         case "petite_suite":
-            // Vérifier s'il y a une petite suite
-            let smallStraight = false;
             if (new Set(dices).size >= 4 && (!dices.includes(6) || !dices.includes(1))) {
                 smallStraight = true;
-                total = 30;
+                scoreToAdd = 30;
+            }
+            if (smallStraight) {
+                categoriesScores.PetiteSuite.push(scoreToAdd);
+                total = scoreToAdd;
             }
             break;
         case "grande_suite":
-            // Vérifier s'il y a une grande suite
-            let largeStraight = false;
             if (new Set(dices).size === 5 && (!dices.includes(6) || !dices.includes(1))) {
                 largeStraight = true;
-                total = 40;
+                scoreToAdd = 40;
+            }
+            if (largeStraight) {
+                categoriesScores.GrandeSuite.push(scoreToAdd);
+                total = scoreToAdd;
             }
             break;
         case "yams":
-            // Vérifier si il y a un yams
-            let yams = false;
             if (new Set(dices).size === 1) {
                 yams = true;
-                total = 50; // La valeur d'un yams est de 50 points
+                scoreToAdd = 50;
+            }
+            if (yams) {
+                categoriesScores.Yams.push(scoreToAdd);
+                total = scoreToAdd;
             }
             break;
         case "chance":
-            // Calculer le total comme la somme de tous les dés
-            total = dices.reduce((acc, curr) => acc + curr, 0);
-            break;
-        case "cumul_1":
-        case "cumul_2":
-        case "cumul_3":
-        case "cumul_4":
-        case "cumul_5":
-        case "cumul_6":
-            // Calculer le total comme la somme des dés ayant la valeur correspondante
-            total = dices.filter(dice => dice == parseInt(operation.split('_')[1])).reduce((acc, curr) => acc + curr, 0);
+            scoreToAdd = dices.reduce((acc, curr) => acc + curr, 0);
+            categoriesScores.Chance.push(scoreToAdd);
+            total = scoreToAdd;
             break;
         default:
-            console.log("opération non prise en charge")
+            console.log("opération non prise en charge");
+            return;
     }
-    return total
+    console.log(`Score pour ${operation}: ${total}`);
+    console.log(`Total général: ${categoriesScores.getTotal()}`);
+    return total;
 }
+
 //--------------------------------------
 // Script principal
-arrayNumbers = [6, 1, 3, 6, 6]
-console.log(calculatePoint("cumul_6", arrayNumbers))
 
 const result = lancerDe()
 console.log(lancerDe())
@@ -219,3 +218,39 @@ console.log("Nouveau tableau de dés :", newDice);
 
 // Ecouteurs
 diceIcon.addEventListener("click", lancerDes); // Gestionnaire d'événement pour le bouton de relance
+
+// Objet yamsScores contenant des tableaux
+
+let yamsScores = {
+    Brelan: [],
+    Carré: [],
+    Full: [],
+    PetiteSuite: [],
+    GrandeSuite: [],
+    Yams: [],
+    Chance: [],
+    getTotal: function () {
+        let total = 0;
+        for (let key in this) {
+            if (Array.isArray(this[key])) {
+                total += this[key].reduce((acc, val) => acc + val, 0);
+            }
+        }
+        return total;
+    }
+};
+
+function ajouterScore(categorie, score) {
+    if (yamsScores.hasOwnProperty(categorie)) {
+        yamsScores[categorie].push(score);
+    } else {
+        console.error("Catégorie non valide");
+    }
+}
+
+// Ajouter des scores aux catégories
+ajouterScore("Brelan", 25);
+
+// Afficher le score total
+console.log("Score Total:", yamsScores.getTotal());
+
