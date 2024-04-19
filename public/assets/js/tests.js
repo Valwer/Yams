@@ -63,7 +63,6 @@ function cumul(array, diceValue) {
 cumul(keptDices, 4);
 
 function calculate(diceRolls) {
-  const diceCounts = {};
 
   // Compter les occurrences de chaque valeur de dé
   diceRolls.forEach((diceValue) => {
@@ -75,8 +74,8 @@ function calculate(diceRolls) {
   });
 
   // Vérifier s'il y a un brelan
-  for (let value in diceCounts) {
-    if (diceCounts[value] === 3) {
+  for (let value in keptDices) {
+    if (keptDices[value] === 3) {
       console.log("Brelan");
       return;
     }
