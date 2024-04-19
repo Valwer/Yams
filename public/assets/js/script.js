@@ -26,27 +26,22 @@ function updateDiceDisplay(dice) {
 
         let diceElement = `<img class="dice des${index}" src="./public/assets/img/icons/dices/dic${value}.png" alt="Dé" data-value="${value}" />`;
         diceContainer.innerHTML += diceElement;
-        
+
     });
-    
+
     selectedDices = document.querySelectorAll('.dice');
 
-selectedDices.forEach(selectedDice => {
-    
-    selectedDice.addEventListener('click', function() {
-        // Ajouter ou retirer la classe .selected-dice lorsqu'on clique sur un dé
-        selectedDice.classList.toggle('selected-dice');
-    });
-});
+    selectedDices.forEach(selectedDice => {
 
+        selectedDice.addEventListener('click', function () {
+            // Ajouter ou retirer la classe .selected-dice lorsqu'on clique sur un dé
+            selectedDice.classList.toggle('selected-dice');
+        });
+    });
 
 }
 
-
-
-// Gestionnaire d'événement pour le bouton de relance
-const diceIcon = document.getElementById('dice-icon');
-diceIcon.addEventListener('click', function() {
+diceIcon.addEventListener('click', function () {
     if (rollsLeft > 0) { // Vérifie le nombre de lancers restants
         // Obtenir les dés sélectionnés
         const selectedDiceElements = document.querySelectorAll('.selected-dice');
@@ -55,7 +50,7 @@ diceIcon.addEventListener('click', function() {
         // Supprimer les dés sélectionnés de keptDices
         selectedDiceIndexes.forEach(el => {
             foundedIndex = keptDices.indexOf(el);
-            keptDices.splice(foundedIndex,1);
+            keptDices.splice(foundedIndex, 1);
         });
         console.log(`Dès après suppression : ${keptDices}`);
         console.log(selectedDiceIndexes);
@@ -78,11 +73,67 @@ diceIcon.addEventListener('click', function() {
     }
 });
 
+// afficher le cumul des 2
+
+function cumul(array, diceValue) {
+    total = 0;
+    array.forEach(dice => {
+        if (dice === diceValue) {
+            total += dice;
+        }
+    });
+    console.log('Total des dés : ' + total);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const rulesButton = document.getElementById('rulesButton'); // Utilisation de l'ID 'rulesButton'
+    const restartButton = document.getElementById('restartButton'); // Utilisation de l'ID 'rulesButton'
+    const infoButton = document.getElementById('infoButton'); // Utilisation de l'ID 'rulesButton'
+    const rulesModal = new bootstrap.Modal(document.getElementById('rulesModal')); // Créer une instance de la modal Bootstrap
+    const restartModal = new bootstrap.Modal(document.getElementById('restartModal')); // Créer une instance de la modal Bootstrap
+    const infoModal = new bootstrap.Modal(document.getElementById('restartModal')); // Créer une instance de la modal Bootstrap
+
+
+    rulesButton.addEventListener('click', function () {
+        rulesModal.show(); // Afficher la modal lorsque le bouton est cliqué
+    });
+    restartButton.addEventListener('click', function () {
+        restartModal.show(); // Afficher la modal lorsque le bouton est cliqué
+    });
+    infoButton.addEventListener('click', function () {
+        infoModal.show(); // Afficher la modal lorsque le bouton est cliqué
+    });
+});
+
+function calculate(diceRolls) {
+    const diceCounts = {};
+
+    // Compter les occurrences de chaque valeur de dé
+    diceRolls.forEach(diceValue => {
+        if (diceCounts[diceValue]) {
+            diceCounts[diceValue]++;
+        } else {
+            diceCounts[diceValue] = 1;
+        }
+    });
+
+    // Vérifier s'il y a un brelan
+    for (let value in diceCounts) {
+        if (diceCounts[value] === 3) {
+            console.log('Brelan');
+            return;
+        }
+    }
+
+    console.log('Pas de brelan');
+}
+
+// Gestionnaire d'événement pour le bouton de relance
+const diceIcon = document.getElementById('dice-icon');
+
+
 let newDice = rollTheDices(dice); // Appel de la fonction rollTheDices avec le tableau initial
 console.log("Nouveau tableau de dés :", newDice);
-
-
-
 
 // afficher le cumul des 1
 
@@ -135,42 +186,7 @@ keptDices.forEach(dice => {
 });
 console.log('Total des dés 3 : ' + total);
 
-// afficher le cumul des 2
-
-
-function cumul(array, diceValue) {
-    total = 0;
-    array.forEach(dice => {
-        if (dice === diceValue) {
-            total += dice;
-        }
-    });
-    console.log('Total des dés : ' + total);
-}
 cumul(keptDices, 4)
-
-function calculate(diceRolls) {
-    const diceCounts = {};
-
-    // Compter les occurrences de chaque valeur de dé
-    diceRolls.forEach(diceValue => {
-        if (diceCounts[diceValue]) {
-            diceCounts[diceValue]++;
-        } else {
-            diceCounts[diceValue] = 1;
-        }
-    });
-
-    // Vérifier s'il y a un brelan
-    for (let value in diceCounts) {
-        if (diceCounts[value] === 3) {
-            console.log('Brelan');
-            return;
-        }
-    }
-
-    console.log('Pas de brelan');
-}
 
 // Exemple d'utilisation
 calculate([3, 3, 3, 1, 4]);  // Affichera "Brelan"
