@@ -38,14 +38,14 @@
                         de jeu<img class="ms-3 mt-1" src="./public/assets/img/icons/dices/casino.png"></div>
                 </div>
 
-                <div id="dice" class="box-content-game mb-5">
+                <div id="dice-table-top" class="box-content-game mb-5">
                 </div>
 
 
             </div>
 
 
-             <!-- LEADERBOARD -->
+            <!-- LEADERBOARD -->
             <div class="col-12 col-lg-4">
                 <div class="text-center bg-gold title-set">
                     <div class="text-dark"><img class="me-3 mt-1"
@@ -65,87 +65,88 @@
                             <tr class="space-col cumul_1">
                                 <td class="space-col">As<img class="ms-3"
                                         src="./public/assets/img/icons/dices/dice1.png"></td>
-                                <td></td>
+                                <td class="score-cell" data-category="as"></td>
                             </tr>
                             <tr class="space-col cumul_2">
                                 <td class="space-col">Deux<img class="ms-3"
                                         src="./public/assets/img/icons/dices/dice2.png"></td>
-                                <td></td>
+                                <td class="score-cell" data-category="deux"></td>
                             </tr>
                             <tr class="space-col cumul_3">
                                 <td class="space-col">Trois<img class="ms-3"
                                         src="./public/assets/img/icons/dices/dice3.png"></td>
-                                <td></td>
+                                <td class="score-cell" data-category="trois"></td>
                             </tr>
                             <tr class="space-col cumul_4">
                                 <td class="space-col">Quatre<img class="ms-3"
                                         src="./public/assets/img/icons/dices/dice4.png"></td>
-                                <td></td>
+                                <td class="score-cell" data-category="quatre"></td>
                             </tr>
                             <tr class="space-col cumul_5">
                                 <td class="space-col">Cinq<img class="ms-3"
                                         src="./public/assets/img/icons/dices/dice5.png"></td>
-                                <td></td>
+                                <td class="score-cell" data-category="cinq"></td>
                             </tr>
                             <tr class="space-col cumul_6">
                                 <td class="space-col">Six<img class="ms-3"
                                         src="./public/assets/img/icons/dices/dice6.png"></td>
-                                <td></td>
+                                <td class="score-cell" data-category="six"></td>
                             </tr>
 
                             <tr class="space-col">
                                 <th class="space-col fs-5">Total</th>
-                                <th class="fs-5"></th>
+                                <th class="fs-5" id="uncategorized-total"></th>
                             </tr>
 
                             <tr class="space-col">
-                                <td class="space-col">Bonus</td>
-                                <td></td>
+                                <th class="space-col">Bonus</td>
+                                <th class="fs-5" id="uncategorized-bonus">
+                                    </td>
                             </tr>
 
                             <tr class="space-col">
                                 <th class="space-col fs-5">Total 1</th>
-                                <th class="fs-5"></th>
+                                <th class="fs-5" id="uncategorized-full"></th>
                             </tr>
 
                             <tr class="space-col brelan">
                                 <td class="space-col">Brelan</td>
-                                <td></td>
+                                <td class="score-cell" data-category="brelan"></td>
                             </tr>
                             <tr class="space-col carre">
                                 <td class="space-col">Carré</td>
-                                <td></td>
+                                <td class="score-cell" data-category="carre"></td>
                             </tr>
                             <tr class="space-col full">
                                 <td class="space-col">Full</td>
-                                <td></td>
+                                <td class="score-cell" data-category="full"></td>
                             </tr>
                             <tr class="space-col petite_suite">
                                 <td class="space-col">Petite suite</td>
-                                <td></td>
+                                <td class="score-cell" data-category="petiteSuite"></td>
                             </tr>
                             <tr class="space-col grande_suite">
                                 <td class="space-col">Grande suite</td>
-                                <td></td>
+                                <td class="score-cell" data-category="grandeSuite"></td>
                             </tr>
                             <tr class="space-col yams">
                                 <td class="space-col">Yam's</td>
-                                <td></td>
+                                <td class="score-cell" data-category="yams"></td>
                             </tr>
                             <tr class="space-col chance">
                                 <td class="space-col">Chance</td>
-                                <td></td>
+                                <td class="score-cell" data-category="chance"></td>
                             </tr>
 
                             <tr class="space-col">
                                 <th class="space-col fs-5">Total 2</th>
-                                <th class="fs-5"></th>
+                                <th class="fs-5" id="categorized-total"></th>
                             </tr>
 
                             <tr class="space-col total-score">
                                 <td class="space-col fs-4">Score<img class="ms-3"
                                         src="./public/assets/img/icons/dices/scores.png"></td>
-                                <td class="fs-4"></td>
+                                <td class="fs-4" id="global-score"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -162,7 +163,7 @@
     <nav class="bg-nav">
         <ul>
             <li id="dice-icon">
-                <div class="dice-icon"></div>
+                <div class="dice-icon"><div class="dice-info"></div></div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#restartModal">
                 <div class="restart-icon"></div>
@@ -272,30 +273,34 @@
     <!-- MODAL INFOS -->
     <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoButtonLabel" aria-hidden="true">
         <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="infoButtonLabel">Plus d'infos</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="infoButtonLabel">Plus d'infos</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="center-element">Merci d'utiliser notre jeu de Yam's <img
+                            src="./public/assets/img/icons/dices/casino.png"></div>
+                    <div class="mb-3 center-element">Réalisé par un groupe d'élèves de l'école la Manu.</div>
+                    <hr>
+                    <p class="luckiest-guy-regular">Lien vers les développeurs:</p>
+                    <div class="center-element">
+                        <div><i class="fa-brands fa-github"></i> <a href="https://github.com/ThunderHime"
+                                alt="Coraline Boulenger">Coraline</a></div>
+                        <div><i class="fa-brands fa-github"></i> <a href="https://github.com/Valwer"
+                                alt="Valwer">Val</a></div>
+                        <div><i class="fa-brands fa-github"></i> <a href="https://github.com/xR3PMz" alt="xR3PMz">
+                                Alex</a></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
             </div>
-            <div class="modal-body">
-            
-            <div class="center-element">Merci d'utiliser notre jeu de Yam's <img src="./public/assets/img/icons/dices/casino.png"></div>
-            <div class="mb-3 center-element">Réalisé par un groupe d'élèves de l'école la Manu.</div>
-                <hr>
-            <p class="luckiest-guy-regular">Lien vers les développeurs:</p>
-            <div class="center-element">
-                <div><i class="fa-brands fa-github"></i> <a href="https://github.com/ThunderHime" alt="Coraline Boulenger">Coraline</a></div>  
-                <div><i class="fa-brands fa-github"></i> <a href="https://github.com/Valwer" alt="Valwer">Val</a></div>
-                <div><i class="fa-brands fa-github"></i> <a href="https://github.com/xR3PMz" alt="xR3PMz"> Alex</a></div>
-            </div>
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-            </div>
-        </div>
         </div>
     </div>
-    
+
     <!-- FIN MODAL -->
 
     <script src="./public/assets/js/script.js"></script>
