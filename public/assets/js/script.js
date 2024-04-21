@@ -278,7 +278,7 @@ function ajouterScore(categorie, score) {
     }
 }
 /**
- * Raffraichit le jeu
+ * Actualise le jeu
  */
 function refreshGame() {
     refreshTableScores();
@@ -287,7 +287,7 @@ function refreshGame() {
 }
 
 /**
- * 
+ * Actualise le tableau des scores
  */
 function refreshTableScores() {
     const uncategorizedTotal = document.querySelector("#uncategorized-total");
