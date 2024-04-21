@@ -115,7 +115,7 @@ function lancerDes() {
         return;
     }
 
-    if(nextRound) {
+    if (nextRound) {
         nextRound = false;
         selectedCategory = false;
         rollsLeft = 3;
@@ -277,12 +277,18 @@ function ajouterScore(categorie, score) {
         console.error("Catégorie non valide");
     }
 }
+/**
+ * Raffraichit le jeu
+ */
 function refreshGame() {
     refreshTableScores();
     //TODO: Ici rajouter l'appel à la méthode IsAllCompleted de l'objet
     // Et conditionner l'affichage ou non du score 
 }
 
+/**
+ * 
+ */
 function refreshTableScores() {
     const uncategorizedTotal = document.querySelector("#uncategorized-total");
     const bonus = document.querySelector("#uncategorized-bonus");
@@ -329,7 +335,7 @@ let categoriesScores = {
         return this.getUncategorizedTotal() + this.getBonus();
     },
     getCategorizedTotal: function () {
-       return this.brelan + this.carre + this.full + this.petiteSuite + this.grandeSuite + this.yams + this.chance;
+        return this.brelan + this.carre + this.full + this.petiteSuite + this.grandeSuite + this.yams + this.chance;
     },
     getGlobalScore: function () {
         return this.getUncategorizedTotalWithBonus() + this.getCategorizedTotal();
