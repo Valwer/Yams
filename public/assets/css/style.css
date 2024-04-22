@@ -149,6 +149,18 @@ nav ul li div {
 	background: url('../img/icons/icon-dice.svg') center/contain no-repeat;
 }
 
+.dice-info {
+	position: absolute;
+	height: 16px;
+	width: 16px;
+	background: #051D3B;
+	color: white;
+	border-radius: 50%;
+	right: -8px;
+	top: 14px;
+	font-size: 60%;
+}
+
 .rules-icon {
 	position: relative;
 	height: 73px;
@@ -283,7 +295,7 @@ nav ul li div {
 .selected-dice{
 	border: solid 4px;
 	border-radius: 10px;
-	border-color: rgb(255, 255, 255);
+	border-color: white;
 }
 
 /* TABLEAU DES SCORES */
