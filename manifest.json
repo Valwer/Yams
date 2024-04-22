@@ -1,18 +1,31 @@
 {
-    "name": "le Yams",
+    "name": "Le Yams",
     "short_name": "Yams",
-    "description": "Le jeu du Yams",
+    "scope" : "/",
+    "start_url": "index.html",
+    "display": "fullscreen",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
     "icons": [
       {
-        "src": "./public/assets/img/icons/dices/dic6.png",
-        "sizes": "192x192",
-        "type": "image/png"
+        "src": "public/assets/img/icons/dices/dic6.png",
+        "type": "image/png",
+        "sizes": "48x48"
+      },
+      {
+        "src": "public/assets/img/icons/dices/dic6.png",
+        "type": "image/png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "public/assets/img/icons/dices/dic6.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "public/assets/img/icons/dices/dic6.png",
+        "type": "image/png",
+        "sizes": "512x512"
       }
-    ],
-    "start_url": "/index.html",
-    "background_color": "#051D3B",
-    "theme_color": "#3367D6",
-    "display": "standalone",
-    "orientation": "portrait"
+    ]
   }
-  
