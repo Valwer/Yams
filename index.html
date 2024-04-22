@@ -33,12 +33,12 @@
 
             <!-- GAME -->
             <div class="col-12 col-lg-7">
-                <div class="text-center bg-red title-set">
+                <div class="text-center bg-red title-set0">
                     <div class="text-dark"><img class="me-3 mt-1" src="./public/assets/img/icons/dices/casino.png">Table
                         de jeu<img class="ms-3 mt-1" src="./public/assets/img/icons/dices/casino.png"></div>
                 </div>
 
-                <div id="dice-table-top" class="box-content-game mb-5">
+                <div id="dice-table-top" class="center-element box-content-game mb-5 dices-table-custom">
                 </div>
 
 
@@ -159,20 +159,24 @@
     <!-- FIN CONTENT -->
 
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR DESKTOP -->
     <nav class="bg-nav">
         <ul>
             <li id="dice-icon">
                 <div class="dice-icon"><div class="dice-info"></div></div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0">Lancer</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#restartModal">
                 <div class="restart-icon"></div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0">Restart</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#rulesModal">
                 <div class="rules-icon"></div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0">Règles</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#infoModal">
                 <div class="infos-icon"></div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0">Infos</div>
             </li>
         </ul>
     </nav>
@@ -203,7 +207,7 @@
 
 
     <!-- MODAL RULES -->
-    <div class="modal fade modal-dialog-scrollable mt-5" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel"
+    <div class="modal fade modal-dialog-scrollable" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
