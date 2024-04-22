@@ -95,7 +95,7 @@ nav ul li {
 		content: "";
 		border-radius: 8px;
 		position: absolute;
-		background: #DCB253;
+		background: #f3af11;
 		color: #151515;
 		top: 100%;
 		left: 0;
@@ -228,6 +228,7 @@ nav ul li div {
 	transform-origin: 45 45;
 }
 
+
 .bg-gold {
 	background: #f3af11;
 }
@@ -266,7 +267,7 @@ nav ul li div {
 }
 
 .modal-sets {
-	height: 60vh;
+	height: 65vh;
 }
 
 
@@ -374,18 +375,17 @@ table {
 th,
 td {
 	padding: 8px;
-	font-size: 17px !important;
-	font-family: "Luckiest Guy", cursive;
 	color: #484747;
-
-
 }
 
 th {
 	background-color: #DCC48E;
-	font-size: 20px !important;
-	font-family: "Luckiest Guy", cursive;
 	color: #202020;
+}
+
+.font-style-custom {
+	font-size: 17px !important;
+	font-family: "Luckiest Guy", cursive;
 }
 
 
