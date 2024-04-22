@@ -164,19 +164,19 @@
         <ul>
             <li id="dice-icon">
                 <div class="dice-icon"><div class="dice-info"></div></div>
-                <div class="luckiest-guy-regular d-lg-none m-0 p-0">Lancer</div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0 text-light">Lancer</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#restartModal">
                 <div class="restart-icon"></div>
-                <div class="luckiest-guy-regular d-lg-none m-0 p-0">Restart</div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0 text-light">Restart</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#rulesModal">
                 <div class="rules-icon"></div>
-                <div class="luckiest-guy-regular d-lg-none m-0 p-0">Règles</div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0 text-light">Règles</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#infoModal">
                 <div class="infos-icon"></div>
-                <div class="luckiest-guy-regular d-lg-none m-0 p-0">Infos</div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0 text-light">Infos</div>
             </li>
         </ul>
     </nav>
@@ -304,6 +304,36 @@
             </div>
         </div>
     </div>
+
+    <!-- MODAL SCORES -->
+
+    <!-- Ouverture de la Modal : #scoreModal , injecter le résultat du score de fin de partie dans la div>class .score-end -->
+
+    <div class="modal fade" id="scoreModal" tabindex="-1" aria-labelledby="scoreButtonLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="scoreButtonLabel">FIN DE LA PARTIE</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="fs-3 text-center luckiest-guy-regular"><img class="me-3 mt-1"
+                        src="./public/assets/img/icons/dices/scores.png">Votre score:<img class="ms-3 mt-1"
+                        src="./public/assets/img/icons/dices/scores.png"></div>
+                    <!-- INJECTER DANS LA DIV EN CI-DESSOUS LE SCORE FINAL -->
+                    <div class="score-end fs-1 text-center text-warning luckiest-guy-regular">94</div>
+
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button> -->
+                    <button type="button" class="btn btn-primary" onclick='window.location.reload(false)'
+                        value="Rafraichir">Relancer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- FIN MODAL -->
 
