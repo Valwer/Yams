@@ -226,7 +226,7 @@ function calculatePoint(operation, dices) {
             }
             break;
         case "petite_suite":
-            if (new Set(dices).size >= 4 && (!dices.includes(6) || !dices.includes(1))) {
+            if (new Set(dices).size === 5 && (!dices.includes(6)) && (dices.includes(1)) && (dices.includes(2)) && (dices.includes(3)) && (dices.includes(4)) && (dices.includes(5))) {
                 smallStraight = true;
                 scoreToAdd = 30;
             }
@@ -393,9 +393,10 @@ scoreCells.forEach((cell) => {
         selectedCategory = true;
         const category = cell.dataset.category;
         // Ajout du score dans l'objet des scores
-        categoriesScores[category] = Number(cell.dataset.value);
+        categoriesScores[category] = calculateScoreForCategory(category, keptDices);
         // Ajout de la classe pour eviter l'affichage/calcul superflu
         cell.classList.add("filled");
+        cell.innerHTML = categoriesScores[category];
 
         // On indique que la prochaine manche sera une nouvelle
         // Afin de pouvoir réinitialiser les tentatives
