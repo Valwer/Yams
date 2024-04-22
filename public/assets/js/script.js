@@ -147,7 +147,7 @@ function lancerDes() {
         keptDices = keptDices.concat(newDices);
 
         // Appeler calculatePoint() pour chaque combinaison possible et afficher les résultats
-        const combinations = ["brelan", "carre", "full", "petite_suite", "grande_suite", "yams", "chance", "cumul_1", "cumul_2", "cumul_3", "cumul_4", "cumul_5", "cumul_6"];
+        const combinations = ["brelan", "carre", "full", "petite_suite", "grande_suite", "yams", "chance", "as1", "deux", "trois", "quatre", "cinq", "six"];
         combinations.forEach(combination => {
             const points = calculatePoint(combination, keptDices);
             console.log(`Points pour ${combination} : ${points}`);
@@ -184,11 +184,78 @@ function calculateScoreForCategory(category, dices) {
  */
 function calculatePoint(operation, dices) {
     let total = 0;
-    let brelan = false, carre = false, full = false, smallStraight = false, largeStraight = false, yams = false;
+    let as1 = false, deux = false, trois = false, quatre = false, ccinq = false, six = false, brelan = false, carre = false, full = false, smallStraight = false, largeStraight = false, yams = false;
     let scoreToAdd = 0;
 
     // Utilisation d'un switch pour évaluer l'opération
     switch (operation) {
+        case "as1":
+            for (let i = 0; i < 6; i++) {
+                if (scoreToAdd) {
+                    scoreToAdd = dices.filter(dice => dice === 1).reduce((acc, curr) => acc + curr, 0)
+                    as1 = true
+                    break;
+                }
+            }
+            if (as1) {
+                total = scoreToAdd;
+            }
+        case "deux":
+            for (let i = 0; i < 6; i++) {
+                if (scoreToAdd) {
+                    scoreToAdd = dices.filter(dice => dice === 2).reduce((acc, curr) => acc + curr, 0)
+                    deux = true
+                    break;
+                }
+            }
+            if (deux) {
+                total = scoreToAdd;
+            }
+        case "trois":
+            for (let i = 0; i < 6; i++) {
+                if (scoreToAdd) {
+                    scoreToAdd = dices.filter(dice => dice === 3).reduce((acc, curr) => acc + curr, 0)
+                    trois = true
+                    break;
+                }
+            }
+            if (trois) {
+                total = scoreToAdd;
+            }
+        case "quatre":
+            for (let i = 0; i < 6; i++) {
+                if (scoreToAdd) {
+                    scoreToAdd = dices.filter(dice => dice === 4).reduce((acc, curr) => acc + curr, 0)
+                    quatre = true
+                    break;
+                }
+            }
+            if (quatre) {
+                total = scoreToAdd;
+            }
+        case "cinq":
+            for (let i = 0; i < 6; i++) {
+                if (scoreToAdd) {
+                    scoreToAdd = dices.filter(dice => dice === 5).reduce((acc, curr) => acc + curr, 0)
+                    cinq = true
+                    break;
+                }
+            }
+            if (cinq) {
+                total = scoreToAdd;
+            }
+        case "six":
+            for (let i = 0; i < 6; i++) {
+                if (scoreToAdd) {
+                    scoreToAdd = dices.filter(dice => dice === 6).reduce((acc, curr) => acc + curr, 0)
+                    six = true
+                    break;
+                }
+            }
+            if (six) {
+                total = scoreToAdd;
+            }
+
         case "brelan":
             for (let i = 1; i <= 6; i++) {
                 if (dices.filter(dice => dice === i).length >= 3) {
@@ -202,7 +269,6 @@ function calculatePoint(operation, dices) {
             }
             break;
         case "carre":
-            let carre = false;
             for (let i = 1; i <= 6; i++) {
                 if (dices.filter(dice => dice === i).length >= 4) {
                     carre = true;
@@ -226,7 +292,7 @@ function calculatePoint(operation, dices) {
             }
             break;
         case "petite_suite":
-            if (new Set(dices).size === 5 && (!dices.includes(6)) && (dices.includes(1)) && (dices.includes(2)) && (dices.includes(3)) && (dices.includes(4)) && (dices.includes(5))) {
+            if (dices.includes(1) && dices.includes(2) && dices.includes(3) && dices.includes(4) && dices.includes(5)) {
                 smallStraight = true;
                 scoreToAdd = 30;
             }
@@ -235,7 +301,7 @@ function calculatePoint(operation, dices) {
             }
             break;
         case "grande_suite":
-            if (new Set(dices).size === 5 && (!dices.includes(6) || !dices.includes(1))) {
+            if (dices.includes(2) && dices.includes(3) && dices.includes(4) && dices.includes(5) && dices.includes(6)) {
                 largeStraight = true;
                 scoreToAdd = 40;
             }
@@ -393,7 +459,7 @@ scoreCells.forEach((cell) => {
         selectedCategory = true;
         const category = cell.dataset.category;
         // Ajout du score dans l'objet des scores
-        categoriesScores[category] = calculateScoreForCategory(category, keptDices);
+        categoriesScores[category] = Number(cell.dataset.value);
         // Ajout de la classe pour eviter l'affichage/calcul superflu
         cell.classList.add("filled");
         cell.innerHTML = categoriesScores[category];
