@@ -147,7 +147,7 @@ function lancerDes() {
         keptDices = keptDices.concat(newDices);
 
         // Appeler calculatePoint() pour chaque combinaison possible et afficher les résultats
-        const combinations = ["brelan", "carre", "full", "petite_suite", "grande_suite", "yams", "chance", "cumulAs", "deux", "trois", "quatre", "cinq", "six"];
+        const combinations = ["brelan", "carre", "full", "petiteSuite", "grandeSuite", "yams", "chance", "cumulAs", "deux", "trois", "quatre", "cinq", "six"];
         combinations.forEach(combination => {
             const points = calculatePoint(combination, keptDices);
             console.log(`Points pour ${combination} : ${points}`);
@@ -253,7 +253,7 @@ function calculatePoint(operation, dices) {
                 total = scoreToAdd;
             }
             break;
-        case "petite_suite":
+        case "petiteSuite":
             if (dices.includes(1) && dices.includes(2) && dices.includes(3) && dices.includes(4) && dices.includes(5)) {
                 smallStraight = true;
                 scoreToAdd = 30;
@@ -262,7 +262,7 @@ function calculatePoint(operation, dices) {
                 total = scoreToAdd;
             }
             break;
-        case "grande_suite":
+        case "grandeSuite":
             if (dices.includes(2) && dices.includes(3) && dices.includes(4) && dices.includes(5) && dices.includes(6)) {
                 largeStraight = true;
                 scoreToAdd = 40;
