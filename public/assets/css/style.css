@@ -242,7 +242,7 @@ nav ul li div {
 
 .title-set0 {
 	color: #3f3f3f !important;
-	margin: 0;
+	padding-top: 4px;
 	font-size: 26px !important;
 	font-family: "Luckiest Guy", cursive;
 	text-transform: uppercase;
@@ -255,7 +255,7 @@ nav ul li div {
 
 .title-set {
 	color: #3f3f3f !important;
-	margin: 0;
+	padding-top: 4px;
 	font-size: 26px !important;
 	font-family: "Luckiest Guy", cursive;
 	text-transform: uppercase;
