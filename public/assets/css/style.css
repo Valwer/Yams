@@ -1,9 +1,13 @@
 /* NATIF ET SETS BOOTSTRAP */
 
+#particles-js {
+	width: 100%;
+	height: 100vh;
+}
 
 header {
 	text-align: center;
-	padding: 20px 0;
+	padding: 20px 0px;
 }
 
 h1 {
@@ -25,6 +29,7 @@ h2 {
 
 body {
 	background: #051D3B !important;
+	/* background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.5)); */
 	color: white;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
@@ -44,7 +49,7 @@ body {
 	font-weight: 500;
 	font-style: normal;
 }
-  
+
 .luckiest-guy-regular {
 	font-family: "Luckiest Guy", cursive;
 	font-weight: 400;
@@ -53,10 +58,13 @@ body {
 
 /* NAVBAR (OUI TOUT CA..) */
 .bg-nav {
-	background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
+	/* background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%); */
 	box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
-	height: 12vh;
-	padding-top: 4px;
+	min-height: 15vh;
+	max-height: 15vh;
+	padding-top: 1vh;
+	background: linear-gradient(90deg, #051D3B 100%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgb(255, 255, 255) 100%);
+	
 }
 
 nav {
@@ -87,46 +95,54 @@ nav ul li {
 	/* Espacement entre les éléments de menu */
 }
 
-nav ul li:after {
-	content: "";
-	border-radius: 8px;
-	position: absolute;
-	background: #DCB253;
-	color: #151515;
-	top: 100%;
-	left: 0;
-	width: 100%;
-	height: 70px;
-	/* Hauteur de l'élément de menu */
-	opacity: .5;
-	transform: perspective(400px) rotateX(-90deg);
-	transform-origin: 45 45;
-	transition: all .4s ease-in;
-}
+@media (min-width: 987px) {
+	nav ul li:after {
+		content: "";
+		border-radius: 8px;
+		position: absolute;
+		background: #f3af11;
+		color: #151515;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		height: 70px;
+		/* Hauteur de l'élément de menu */
+		opacity: .5;
+		transform: perspective(400px) rotateX(-90deg);
+		transform-origin: 45 45;
+		transition: all .4s ease-in;
+		font-family: "Luckiest Guy";
+	}
 
-nav ul li:nth-child(1):after {
-	content: "Lancer";
-	line-height: 80px;
-}
-nav ul li:nth-child(2):after {
-	content: "Restart";
-	line-height: 80px;
-}
-nav ul li:nth-child(3):after {
-	content: "Règles";
-	line-height: 80px;
-}
-nav ul li:nth-child(4):after {
-	content: "Infos";
-	line-height: 80px;
-}
-nav ul li:hover {
-	transform: translateY(-70px);
-	/* Déplacer le menu vers le haut au survol */
-}
-nav ul li:hover:after {
-	opacity: 1;
-	transform: perspective(400px) rotateX(0deg) scale(1);
+	nav ul li:nth-child(1):after {
+		content: "Lancer";
+		line-height: 80px;
+	}
+
+	nav ul li:nth-child(2):after {
+		content: "Restart";
+		line-height: 80px;
+	}
+
+	nav ul li:nth-child(3):after {
+		content: "Règles";
+		line-height: 80px;
+	}
+
+	nav ul li:nth-child(4):after {
+		content: "Infos";
+		line-height: 80px;
+	}
+
+	nav ul li:hover {
+		transform: translateY(-70px);
+		/* Déplacer le menu vers le haut au survol */
+	}
+
+	nav ul li:hover:after {
+		opacity: 1;
+		transform: perspective(400px) rotateX(0deg) scale(1);
+	}
 }
 
 
@@ -140,6 +156,7 @@ nav ul li div {
 	position: relative;
 }
 
+
 .dice-icon {
 	position: relative;
 	height: 73px;
@@ -148,6 +165,8 @@ nav ul li div {
 	background: white;
 	background: url('../img/icons/icon-dice.svg') center/contain no-repeat;
 }
+
+
 
 .dice-info {
 	position: absolute;
@@ -170,6 +189,7 @@ nav ul li div {
 	background: url('../img/icons/icon-rules.svg') center/contain no-repeat;
 
 }
+
 .restart-icon {
 	position: relative;
 	height: 73px;
@@ -178,6 +198,7 @@ nav ul li div {
 	background: white;
 	background: url('../img/icons/icon-restart.svg') center/contain no-repeat;
 }
+
 .infos-icon {
 	position: relative;
 	height: 73px;
@@ -192,31 +213,54 @@ nav ul li div {
 
 .bg-red {
 	background: #940000;
-	/* width: 80%; */
-	border-radius: 8px;
-	
 }
+
+.dices-table-custom {
+	filter: drop-shadow(0 -6mm 4mm #000000);
+	max-width: 72%;
+	max-height: 82%;
+}
+
 .box-content-game {
-	height: 45vh;
+	height: 50vh;
 	background-image: url(../img/background/table1.png);
+	background-repeat: no-repeat;
+	background-size: cover;
 	border-radius: 8px 8px 8px 8px;
 	border: 15px solid #DEB887;
 	transform: perspective(500px) rotateX(-150deg);
-	margin: 0% 12%;
+	margin: auto;
 	transform-origin: 45 45;
 }
+
+
 .bg-gold {
-	background: #DCB253;
+	background: #f3af11;
 }
+
 .box-content-score {
-	height: 46vh;
+	height: 52vh;
 	background: #FFFFFF;
 	border-radius: 0px 0px 8px 8px;
 	overflow-y: scroll;
 }
+
+.title-set0 {
+	color: #3f3f3f !important;
+	padding-top: 4px;
+	font-size: 26px !important;
+	font-family: "Luckiest Guy", cursive;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 8px #FFFFFF,
+		2px 2px 0px #FFFFFF,
+		3px 3px 0px #FFFFFF,
+		4px 4px 0px #FFFFFF;
+	border-radius: 8px 8px 8px 8px;
+}
+
 .title-set {
 	color: #3f3f3f !important;
-	margin: 0;
+	padding-top: 4px;
 	font-size: 26px !important;
 	font-family: "Luckiest Guy", cursive;
 	text-transform: uppercase;
@@ -226,8 +270,9 @@ nav ul li div {
 		4px 4px 0px #FFFFFF;
 	border-radius: 8px 8px 0px 0px;
 }
+
 .modal-sets {
-	height: 60vh;
+	height: 65vh;
 }
 
 
@@ -235,69 +280,86 @@ nav ul li div {
 
 
 @media (min-width: 433px) {
-.des0 {
-	margin-left: 6%;
-	margin-top: 12vh;
-	transform: rotate(4deg); 
-}
-.des1 {
-	margin-left: 12vh;
-	/* margin-top: 2vh; */
-	transform: rotate(-5deg); 
-}
-.des2 {
-	margin-left: 16vh;
-	/* margin-top: 6vh; */
-	transform: rotate(22deg); 
-}
-.des3 {
-	margin-left: 10vh;
-	margin-top: 2vh;
-	transform: rotate(-15deg); 
-}
-.des4 {
-	margin-left: 8vh;
-	margin-top: 3vh;
-	transform: rotate(-5deg); 
-}
+	.des0 {
+		margin-left: 6%;
+		margin-top: 12vh;
+		transform: rotate(4deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+	}
+
+	.des1 {
+		margin-left: 12vh;
+		/* margin-top: 2vh; */
+		transform: rotate(-5deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+	}
+
+	.des2 {
+		margin-left: 16vh;
+		/* margin-top: 6vh; */
+		transform: rotate(22deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+	}
+
+	.des3 {
+		margin-left: 10vh;
+		margin-top: 2vh;
+		transform: rotate(-15deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+	}
+
+	.des4 {
+		margin-left: 8vh;
+		margin-top: 3vh;
+		transform: rotate(-5deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+	}
 }
 
 @media (max-width: 433px) {
-.des0 {
-	margin-left: 6vh;
-	margin-top: 8vh;
-	transform: rotate(4deg); 
-	/* border: solid 4px #ffffff; */
-}
-.des1 {
-	margin-left: 1vh;
-	margin-top: -4vh;
-	transform: rotate(-5deg); 
-	/* border: solid 4px #ffffff; */
-}
-.des2 {
-	margin-left: 16vh;
-	margin-top: -2vh;
-	transform: rotate(22deg); 
-	/* border: solid 4px #ffffff; */
-}
-.des3 {
-	margin-left: 8vh;
-	margin-top: 1vh;
-	transform: rotate(-15deg); 
-	/* border: solid 4px #ffffff; */
-}
-.des4 {
-	margin-left: 3vh;
-	margin-top: 3vh;
-	transform: rotate(-5deg); 
-	/* border: solid 4px #ffffff; */
-}
+	.des0 {
+		margin-left: 6vh;
+		margin-top: 8vh;
+		transform: rotate(4deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+		/* border: solid 4px #ffffff; */
+	}
+
+	.des1 {
+		margin-left: 1vh;
+		margin-top: -4vh;
+		transform: rotate(-5deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+		/* border: solid 4px #ffffff; */
+	}
+
+	.des2 {
+		margin-left: 16vh;
+		margin-top: -2vh;
+		transform: rotate(22deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+		/* border: solid 4px #ffffff; */
+	}
+
+	.des3 {
+		margin-left: 8vh;
+		margin-top: 1vh;
+		transform: rotate(-15deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+		/* border: solid 4px #ffffff; */
+	}
+
+	.des4 {
+		margin-left: 3vh;
+		margin-top: 3vh;
+		transform: rotate(-5deg);
+		filter: drop-shadow(-16px -16px 4px #000000);
+		/* border: solid 4px #ffffff; */
+	}
 }
 
-
-.selected-dice{
-	border: solid 4px;
+.selected-dice {
+	border: solid 3px;
 	border-radius: 10px;
 	border-color: white;
 }
@@ -305,33 +367,30 @@ nav ul li div {
 /* TABLEAU DES SCORES */
 table {
 	width: 100%;
-	
 }
-th, td {
-	padding: 8px;
-	font-size: 17px !important;
-	font-family: "Luckiest Guy", cursive;
-	color: #484747;
-	
-	
-}
-th {
-	background-color:#DCC48E; 
-	font-size: 20px !important;
-	font-family: "Luckiest Guy", cursive;
-	color: #202020;
-}
-
 .space-col {
-	border:1px solid #000000;
+	border: 1px solid #000000;
 }
 
 .center-element {
 	text-align: center;
 }
 
-.dices-custom {
-	/* filter: drop-shadow(0 -6mm 4mm #000000);
-	filter: drop-shadow(0 0 0.75rem #000000); */
-	filter: drop-shadow(-16px -16px 4px #000000);
+
+th,
+td {
+	padding: 8px;
+	color: #484747;
 }
+
+th {
+	background-color: #DCC48E;
+	color: #202020;
+}
+
+.font-style-custom {
+	font-size: 17px !important;
+	font-family: "Luckiest Guy", cursive;
+}
+
+
