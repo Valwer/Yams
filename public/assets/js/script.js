@@ -424,6 +424,8 @@ scoreCells.forEach((cell) => {
         // Ajout de la classe pour eviter l'affichage/calcul superflu
         cell.classList.add("filled");
         cell.innerHTML = categoriesScores[category];
+        rollsLeft = 3
+        diceInfo.innerHTML = rollsLeft;
 
         // On indique que la prochaine manche sera une nouvelle
         // Afin de pouvoir réinitialiser les tentatives
@@ -432,7 +434,6 @@ scoreCells.forEach((cell) => {
     })
 });
 
-calculatePoint("petite_suite", [1, 5, 2, 4, 3])
 
 // TODO: Identifier quand le jeu est terminé et afficher le score du joueur en conséquence
 // TODO: (Fait ?) Rajouter le controle de séléction des dés pour éviter d'incrémenter le compteur de lancement de dés lorsqu'il n'y a aucune selection du joueur
