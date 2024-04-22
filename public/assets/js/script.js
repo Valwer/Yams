@@ -147,7 +147,7 @@ function lancerDes() {
         keptDices = keptDices.concat(newDices);
 
         // Appeler calculatePoint() pour chaque combinaison possible et afficher les résultats
-        const combinations = ["brelan", "carre", "full", "petite_suite", "grande_suite", "yams", "chance", "cumul_1", "cumul_2", "cumul_3", "cumul_4", "cumul_5", "cumul_6"];
+        const combinations = ["brelan", "carre", "full", "petiteSuite", "grandeSuite", "yams", "chance", "cumulAs", "deux", "trois", "quatre", "cinq", "six"];
         combinations.forEach(combination => {
             const points = calculatePoint(combination, keptDices);
             console.log(`Points pour ${combination} : ${points}`);
@@ -175,6 +175,17 @@ function calculateScoreForCategory(category, dices) {
     return calculatePoint(category, dices);
 }
 
+function cumul(array, diceValue) {
+    total = 0;
+    array.forEach(dice => {
+        if (dice === diceValue) {
+            total += dice;
+        }
+    });
+    return total
+}
+
+
 /**
  * Calculer les points en fonction de l'opération et des dés rentrés en paramètre
  * 
@@ -184,11 +195,29 @@ function calculateScoreForCategory(category, dices) {
  */
 function calculatePoint(operation, dices) {
     let total = 0;
-    let brelan = false, carre = false, full = false, smallStraight = false, largeStraight = false, yams = false;
+    let cumulAs = false, deux = false, trois = false, quatre = false, cinq = false, six = false, brelan = false, carre = false, full = false, smallStraight = false, largeStraight = false, yams = false;
     let scoreToAdd = 0;
 
     // Utilisation d'un switch pour évaluer l'opération
     switch (operation) {
+        case "cumulAs":
+            total = cumul(dices, 1);
+            break;
+        case "deux":
+            total = cumul(dices, 2);
+            break;
+        case "trois":
+            total = cumul(dices, 3);
+            break;
+        case "quatre":
+            total = cumul(dices, 4);
+            break;
+        case "cinq":
+            total = cumul(dices, 5);
+            break;
+        case "six":
+            total = cumul(dices, 6);
+            break;
         case "brelan":
             for (let i = 1; i <= 6; i++) {
                 if (dices.filter(dice => dice === i).length >= 3) {
@@ -202,7 +231,6 @@ function calculatePoint(operation, dices) {
             }
             break;
         case "carre":
-            let carre = false;
             for (let i = 1; i <= 6; i++) {
                 if (dices.filter(dice => dice === i).length >= 4) {
                     carre = true;
@@ -225,8 +253,8 @@ function calculatePoint(operation, dices) {
                 total = scoreToAdd;
             }
             break;
-        case "petite_suite":
-            if (new Set(dices).size === 5 && (!dices.includes(6)) && (dices.includes(1)) && (dices.includes(2)) && (dices.includes(3)) && (dices.includes(4)) && (dices.includes(5))) {
+        case "petiteSuite":
+            if (dices.includes(1) && dices.includes(2) && dices.includes(3) && dices.includes(4) && dices.includes(5)) {
                 smallStraight = true;
                 scoreToAdd = 30;
             }
@@ -234,8 +262,8 @@ function calculatePoint(operation, dices) {
                 total = scoreToAdd;
             }
             break;
-        case "grande_suite":
-            if (new Set(dices).size === 5 && (!dices.includes(6) || !dices.includes(1))) {
+        case "grandeSuite":
+            if (dices.includes(2) && dices.includes(3) && dices.includes(4) && dices.includes(5) && dices.includes(6)) {
                 largeStraight = true;
                 scoreToAdd = 40;
             }
@@ -305,7 +333,7 @@ function refreshTableScores() {
 
 // Déclaration Objet conteneur des scores
 let categoriesScores = {
-    as: null,
+    cumulAs: null,
     deux: null,
     trois: null,
     quatre: null,
@@ -329,7 +357,7 @@ let categoriesScores = {
         return 0;
     },
     getUncategorizedTotal: function () {
-        return this.as + this.deux + this.trois + this.quatre + this.cinq + this.six;
+        return this.cumulAs + this.deux + this.trois + this.quatre + this.cinq + this.six;
     },
     getUncategorizedTotalWithBonus: function () {
         return this.getUncategorizedTotal() + this.getBonus();
@@ -351,7 +379,6 @@ let categoriesScores = {
 //--------------------------------------
 diceInfo.innerHTML = rollsLeft;
 let newDices = rollTheDices(dices); // Appel de la fonction rollTheDices avec le tableau initial
-console.log("Nouveau tableau de dés :", newDices);
 
 // Ecouteurs
 diceIcon.addEventListener("click", lancerDes); // Gestionnaire d'événement pour le bouton de relance
@@ -393,10 +420,12 @@ scoreCells.forEach((cell) => {
         selectedCategory = true;
         const category = cell.dataset.category;
         // Ajout du score dans l'objet des scores
-        categoriesScores[category] = calculateScoreForCategory(category, keptDices);
+        categoriesScores[category] = Number(cell.dataset.value);
         // Ajout de la classe pour eviter l'affichage/calcul superflu
         cell.classList.add("filled");
         cell.innerHTML = categoriesScores[category];
+        rollsLeft = 3
+        diceInfo.innerHTML = rollsLeft;
 
         // On indique que la prochaine manche sera une nouvelle
         // Afin de pouvoir réinitialiser les tentatives
@@ -406,11 +435,7 @@ scoreCells.forEach((cell) => {
 });
 
 
-// TODO: Rajouter les "uncategorized" (1 à 6)
-// TODO: Regarder pourquoi les Petites et Grandes suites ne semblent pas fonctionner
 // TODO: Identifier quand le jeu est terminé et afficher le score du joueur en conséquence
-// TODO: Revoir problème sur les règles (la partie écrite)
-// TODO: Tester toutes les combinaisons
 // TODO: (Fait ?) Rajouter le controle de séléction des dés pour éviter d'incrémenter le compteur de lancement de dés lorsqu'il n'y a aucune selection du joueur
 // TODO: Revoir l'animation, le refresh reactulise l'affichage tout les dés même les non selectionnés
 
