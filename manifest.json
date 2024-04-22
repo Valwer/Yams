@@ -1,0 +1,18 @@
+{
+    "name": "le Yams",
+    "short_name": "Yams",
+    "description": "Le jeu du Yams",
+    "icons": [
+      {
+        "src": "./public/assets/img/icons/dices/dic6.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/index.html",
+    "background_color": "#051D3B",
+    "theme_color": "#3367D6",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
+  
