@@ -21,10 +21,13 @@
 </head>
 
 <body>
+    
     <!-- HEADER -->
+    
     <header>
         <h1 class="mt-3">Le jeu du Yam's</h1>
     </header>
+
     <!-- FIN HEADER -->
 
 
@@ -33,13 +36,13 @@
         <div class="row justify-content-center">
 
             <!-- GAME -->
-            <div class="col-12 col-lg-7">
-                <div class="text-center bg-red title-set">
+            <div class="col-12 col-lg-7 mb-4">
+                <div class="text-center bg-red title-set0">
                     <div class="text-dark"><img class="me-3 mt-1" src="./public/assets/img/icons/dices/casino.png">Table
                         de jeu<img class="ms-3 mt-1" src="./public/assets/img/icons/dices/casino.png"></div>
                 </div>
 
-                <div id="dice-table-top" class="box-content-game mb-5">
+                <div id="dice-table-top" class="center-element box-content-game mb-5 dices-table-custom">
                 </div>
 
 
@@ -54,7 +57,7 @@
                             src="./public/assets/img/icons/dices/scores.png"></div>
                 </div>
 
-                <div class="box-content-score mb-3">
+                <div class="box-content-score mb-3 font-style-custom">
                     <table>
                         <thead>
                             <tr class="space-col">
@@ -157,25 +160,28 @@
 
         </div>
     </div>
+    
     <!-- FIN CONTENT -->
 
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR DESKTOP -->
     <nav class="bg-nav">
         <ul>
             <li id="dice-icon">
-                <div class="dice-icon">
-                    <div class="dice-info"></div>
-                </div>
+                <div class="dice-icon"><div class="dice-info"></div></div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0 text-light">Lancer</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#restartModal">
                 <div class="restart-icon"></div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0 text-light">Restart</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#rulesModal">
                 <div class="rules-icon"></div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0 text-light">Règles</div>
             </li>
             <li data-bs-toggle="modal" data-bs-target="#infoModal">
                 <div class="infos-icon"></div>
+                <div class="luckiest-guy-regular d-lg-none m-0 p-0 text-light">Infos</div>
             </li>
         </ul>
     </nav>
@@ -193,7 +199,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p class="luckiest-guy-regular">Voulez-vous redémarrer la partie ?</p>
+                    <p>La partie prendra fin et les scores seront réinitialisés.</p>
+                    <hr>
+                    <p class="luckiest-guy-regular text-center">Voulez-vous redémarrer la partie ?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
@@ -205,8 +213,8 @@
     </div>
 
 
-    <!-- MODAL RULES -->
-    <div class="modal fade modal-dialog-scrollable mt-5" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel"
+    <!-- MODAL RULES
+    <div class="modal fade modal-dialog-scrollable" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -270,8 +278,105 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
+
+        <!-- MODAL RULES -->
+        <div class="modal fade modal-dialog-scrollable" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="font-size: 14px;">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="rulesModalLabel">Règles du Yam's</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body modal-sets">
+                    <div>
+                        <p>Le joueur dispose de 3 lancers à chaque coup.
+                        L'objectif étant de réaliser des combinaisons qui rapportent des points. 
+                        Il a le choix de reprendre tout ou une partie des dés selon son gré, pour tenter d'obtenir la combinaison voulue. </p>  
+                        <p>A chaque tour, le joueur doit obligatoirement affecter son jet de dés à une opération et marquer un nombre de points en fonction de cette opération.</p>
+                        <p>Vous trouverez en annexe la liste des opérations possibles et son calcul de points.</p>
+                        <p>En fin de partie, on vérifie si le cumul des opérations « Total 1 », « Total 2 », « Total 3 », « Total 4 », « Total 5 » et « Total 6 » est supérieur à 63, si oui, le joueur bénéficie d’un bonus de 35 points.</p>
+                    </div>
+
+                    <p style="text-align: center; text-decoration: solid;">Tableau des opérations et calculs des points</p>
+
+                    <table>
+                        <thead>
+                            <tr class="space-col">
+                                <th class="space-col">Opération</th>
+                                <th>Calcul des pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="space-col">
+                                <td class="space-col">Total 1</td>
+                                <td><strong>Cumul des 1 </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Total 2</td>
+                                <td><strong>Cumul des 2 </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Total 3</td>
+                                <td><strong>Cumul des 3 </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Total 4</td>
+                                <td><strong>Cumul des 4 </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Total 5</td>
+                                <td><strong>Cumul des 5 </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Total 6</td>
+                                <td><strong>Cumul des 6 </strong></td>
+                            </tr>
+
+                            <tr class="space-col">
+                                <td class="space-col">Bonus</td>
+                                <td>Si le cumul de Total 1, 2, 3, 4, 5 et 6 > 63pts : <strong>35pts </strong></td>
+                            </tr>
+
+                            <tr class="space-col">
+                                <td class="space-col">Brelan</td>
+                                <td><strong>Cumul des 3 dés identiques </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Carré</td>
+                                <td><strong>Cumul des 4 dés identiques </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Full</td>
+                                <td>Si 2 dés identiques (paire) et 3 dés identiques (brelan) : <strong>25pts </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Petite suite</td>
+                                <td>Si les valeurs 1, 2, 3, 4 et 5 sont présentes : <strong>30pts </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Grande suite</td>
+                                <td>Si les valeurs 2, 3, 4, 5 et 6 sont présentes : <strong>40pts </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Yam's</td>
+                                <td>Si 5 dés identiques : <strong>50pts </strong></td>
+                            </tr>
+                            <tr class="space-col">
+                                <td class="space-col">Chance</td>
+                                <td><strong>Cumul des 5 dés</strong></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- MODAL INFOS -->
     <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoButtonLabel" aria-hidden="true">
@@ -304,8 +409,37 @@
         </div>
     </div>
 
-    <!-- FIN MODAL -->
+    <!-- MODAL SCORES -->
 
+    <!-- Ouverture de la Modal : #scoreModal , injecter le résultat du score de fin de partie dans la div>class .score-end -->
+
+    <div class="modal fade" id="scoreModal" tabindex="-1" aria-labelledby="scoreButtonLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="scoreButtonLabel">FIN DE LA PARTIE</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="fs-3 text-center luckiest-guy-regular"><img class="me-3 mt-1"
+                        src="./public/assets/img/icons/dices/scores.png">Votre score:<img class="ms-3 mt-1"
+                        src="./public/assets/img/icons/dices/scores.png"></div>
+                    <!-- INJECTER DANS LA DIV EN CI-DESSOUS LE SCORE FINAL -->
+                    <div class="score-end fs-1 text-center text-warning luckiest-guy-regular">94</div>
+
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button> -->
+                    <button type="button" class="btn btn-primary" onclick='window.location.reload(false)'
+                        value="Rafraichir">Relancer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FIN MODAL -->
     <script src="./public/assets/js/script.js"></script>
 </body>
 

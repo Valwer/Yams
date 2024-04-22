@@ -147,7 +147,7 @@ function lancerDes() {
         keptDices = keptDices.concat(newDices);
 
         // Appeler calculatePoint() pour chaque combinaison possible et afficher les résultats
-        const combinations = ["brelan", "carre", "full", "petite_suite", "grande_suite", "yams", "chance", "cumulAs", "deux", "trois", "quatre", "cinq", "six"];
+        const combinations = ["brelan", "carre", "full", "petiteSuite", "grandeSuite", "yams", "chance", "cumulAs", "deux", "trois", "quatre", "cinq", "six"];
         combinations.forEach(combination => {
             const points = calculatePoint(combination, keptDices);
             console.log(`Points pour ${combination} : ${points}`);
@@ -253,7 +253,7 @@ function calculatePoint(operation, dices) {
                 total = scoreToAdd;
             }
             break;
-        case "petite_suite":
+        case "petiteSuite":
             if (dices.includes(1) && dices.includes(2) && dices.includes(3) && dices.includes(4) && dices.includes(5)) {
                 smallStraight = true;
                 scoreToAdd = 30;
@@ -262,7 +262,7 @@ function calculatePoint(operation, dices) {
                 total = scoreToAdd;
             }
             break;
-        case "grande_suite":
+        case "grandeSuite":
             if (dices.includes(2) && dices.includes(3) && dices.includes(4) && dices.includes(5) && dices.includes(6)) {
                 largeStraight = true;
                 scoreToAdd = 40;
@@ -424,6 +424,8 @@ scoreCells.forEach((cell) => {
         // Ajout de la classe pour eviter l'affichage/calcul superflu
         cell.classList.add("filled");
         cell.innerHTML = categoriesScores[category];
+        rollsLeft = 3
+        diceInfo.innerHTML = rollsLeft;
 
         // On indique que la prochaine manche sera une nouvelle
         // Afin de pouvoir réinitialiser les tentatives
@@ -432,7 +434,6 @@ scoreCells.forEach((cell) => {
     })
 });
 
-calculatePoint("petite_suite", [1, 5, 2, 4, 3])
 
 // TODO: Identifier quand le jeu est terminé et afficher le score du joueur en conséquence
 // TODO: (Fait ?) Rajouter le controle de séléction des dés pour éviter d'incrémenter le compteur de lancement de dés lorsqu'il n'y a aucune selection du joueur
